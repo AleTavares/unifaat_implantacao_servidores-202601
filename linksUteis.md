@@ -230,3 +230,4 @@ Para dúvidas específicas sobre os recursos listados:
 - Participe de meetups e eventos locais
 
 **Lembre-se:** A prática constante é fundamental para dominar essas tecnologias!
+

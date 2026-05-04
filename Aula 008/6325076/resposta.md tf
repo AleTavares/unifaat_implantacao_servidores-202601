@@ -1,0 +1,28 @@
+Questão 1: Conceito de Cluster 
+
+A diferença fundamental é:
+
+Docker Compose: gerencia containers em um único host (máquina).
+Docker Swarm: gerencia containers em um cluster de várias máquinas (nós)
+
+
+Questão 2: Funções dos Nós
+Manager:
+
+Controla o cluster
+Toma decisões (orquestração)
+Worker:
+Executa as tarefas (containers/services)
+Recebe instruções do Manager
+
+Questão 3: Inicialização do Swarm
+A)docker swarm init
+b)overlay
+
+Questão 4: Criação de Service
+A)docker service create --name web-escalavel --replicas 3 nginx:alpine
+B)docker service ps web-escalavel
+
+Questão 5: Atualização e Escalabilidade
+A)docker service scale web-escalavel=5
+B)Auto-healing (ou Self-healing)

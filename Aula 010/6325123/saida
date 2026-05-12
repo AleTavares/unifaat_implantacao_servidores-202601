@@ -1,0 +1,290 @@
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+:...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+000000000000    r-dca58516
+GROUPS  sg-245f6a01     default
+INSTANCES       0       x86_64          False   xen     ami-0c55b159cbfafe1f0         i-97b93635e7343cc0e     t2.micro        None    None    2026-05-12T01:10:02+00:00     ip-10-191-180-211.sa-east-1.compute.internal    10.191.180.211        ec2-54-214-126-125.sa-east-1.compute.amazonaws.com      54.214.126.125        True            subnet-aed561f4 paravirtual     vpc-426e6efc
+MONITORING      enabled
+NETWORKINTERFACES       Primary network interface       1b:2b:3c:4d:5e:6f             eni-5dd4bb4a    000000000000    10.191.180.211  True    in-use  subnet-aed561f4       vpc-426e6efc
+ASSOCIATION     000000000000    54.214.126.125
+ATTACHMENT      2015-01-01T00:00:00+00:00       eni-attach-1baaaeef     True          0       attached
+GROUPS  sg-5990f4b4aa62fffc6    default
+PRIVATEIPADDRESSES      True    10.191.180.211
+ASSOCIATION     000000000000    54.214.126.125
+PLACEMENT       sa-east-1a              default
+STATE   0       pending
+TAGS    Name    lab10-localstack-instance
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)

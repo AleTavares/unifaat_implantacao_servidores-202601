@@ -1,0 +1,29 @@
+# 1. Metadados do Objeto
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy-tf09
+  labels:
+    app: web-tf09
+
+# 2. Especificação do Estado Desejado
+spec:
+  # Quantidade de replicas
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: web-tf09
+      
+  # Template dos Pods.
+  template:
+    metadata:
+      # As labels são usadas pelo Service para encontrar este Pod
+      labels:
+        app: web-tf09
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80

@@ -41,7 +41,7 @@ a) **Defina** o conceito de **Subnet** dentro de uma VPC e explique a diferença
 
 b) Qual componente de rede é obrigatório para que uma instância EC2 em uma Subnet Pública consiga se conectar à Internet (enviar e receber tráfego) e qual componente é usado para inspecionar o tráfego de entrada/saída em nível de Subnet?
 
-**R: O componente obrigatório para uma instância EC2 em uma Subnet Pública acessar a Internet é o **Internet Gateway e componente usado para inspecionar e controlar o tráfego em nível de Subnet é a Network ACL.**
+**R: O componente obrigatório para uma instância EC2 em uma Subnet Pública acessar a Internet é o Internet Gateway e componente usado para inspecionar e controlar o tráfego em nível de Subnet é a Network ACL.**
 
 
 ## Questão 4: Instâncias EC2 (Prática Teórica)
@@ -53,6 +53,10 @@ a) Ao lançar uma instância EC2, qual é o termo da AWS para a imagem do Sistem
 
 b) Após lançar uma instância Linux (Ubuntu) e garantir que a porta 22 esteja aberta, qual comando Linux você usaria no seu terminal **WSL** para se conectar a esta instância usando o arquivo de chave `minha_chave.pem`? (Assuma que o endereço público da instância é `ec2-user@54.123.45.67`).
 
+**R:chmod 400 minha_chave.pem**
+**ssh -i minha_chave.pem ec2-user@54.123.45.67**
+
+
 ## Questão 5: Comandos AWS CLI (Prática)
 A Tarefa Prática exige o uso de comandos básicos do AWS CLI para gerenciar recursos na AWS.
 
@@ -62,9 +66,21 @@ Você precisa executar ações comuns de infraestrutura usando a linha de comand
 ### Instrua o comando correto para cada uma das seguintes operações:
 
 1.  **Configurar credenciais:** Qual comando AWS CLI é usado para configurar as credenciais e região no seu ambiente local?
+
+**R: aws configure**
+
 2.  **Listar instâncias EC2:** Qual comando AWS CLI você usaria para listar todas as instâncias EC2 na região configurada?
+
+**R: aws ec2 describe-instances**
+
 3.  **Criar um bucket S3:** Qual comando AWS CLI cria um bucket chamado `meu-bucket-tf10` na região `sa-east-1`?
+
+**R: aws s3 mb s3://meu-bucket-tf10 --region sa-east-1**
+
 4.  **Descrever VPCs:** Qual comando AWS CLI retorna as informações das VPCs existentes na região configurada?
+
+**R: aws ec2 describe-vpcs**
+
 
 ## Questão 6: Evidências Práticas de Configuração e Criação de Recursos
 
@@ -95,7 +111,8 @@ Execute os seguintes passos na AWS real ou LocalStack e forneça prints das evid
 ![alt text](<bucket.png>)
 
 2. **Criar uma Instância EC2 com tag TF010:** Use o comando para criar uma instância EC2 com tag `Name=TF010-<seu-ra>`. Forneça print do comando `run-instances` e um print do `describe-instances` mostrando a instância criada.
-
+![alt text](<run.png>)
+![alt text](<describe.png>)
 > **Nota:** Se usar LocalStack, adicione `--endpoint-url=http://localhost:4566` aos comandos. Coloque todos os prints no README da sua pasta RA, descrevendo cada evidência.
 
 ## Sessão de Entrega

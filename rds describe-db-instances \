@@ -1,0 +1,110 @@
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "database-1",
+            "DBInstanceClass": "db.t4g.micro",
+            "Engine": "postgres",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "adminnn",
+            "Endpoint": {
+                "Address": "database-1.cbgmuooamxnf.sa-east-1.rds.amazonaws.com",
+                "Port": 5432,
+                "HostedZoneId": "ZLRUIUX7Z3ZF7"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2026-06-02T00:21:24.469000+00:00",
+            "PreferredBackupWindow": "01:00-01:30",
+            "BackupRetentionPeriod": 1,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-00c084edc38fe73d0",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.postgres18",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "sa-east-1c",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "default",
+                "DBSubnetGroupDescription": "default",
+                "VpcId": "vpc-0d128e65fa29fe41c",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-06755ea2396633819",
+                        "SubnetAvailabilityZone": {
+                            "Name": "sa-east-1c"
+                        },
+                        "SubnetOutpost": {},
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-06fd3f0d3a2dc4aa1",
+                        "SubnetAvailabilityZone": {
+                            "Name": "sa-east-1a"
+                        },
+                        "SubnetOutpost": {},
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-0e6bbe944e9318b57",
+                        "SubnetAvailabilityZone": {
+                            "Name": "sa-east-1b"
+                        },
+                        "SubnetOutpost": {},
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "sun:00:07-sun:00:37",
+            "UpgradeRolloutOrder": "second",
+            "PendingModifiedValues": {},
+            "LatestRestorableTime": "2026-06-02T01:56:38+00:00",
+            "MultiAZ": false,
+            "EngineVersion": "18.3",
+            "AutoMinorVersionUpgrade": true,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "postgresql-license",
+            "StorageThroughput": 0,
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "default:postgres-18",
+                    "Status": "in-sync"
+                }
+            ],
+            "PubliclyAccessible": false,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": true,
+            "KmsKeyId": "arn:aws:kms:sa-east-1:975868896086:key/13f0861c-0daf-4985-8e7a-af3b12309df6",
+            "DbiResourceId": "db-BEPREUMY4ZBF3I6PD5WIF2R7ZA",
+            "CACertificateIdentifier": "rds-ca-rsa2048-g1",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": true,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:sa-east-1:975868896086:db:database-1",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "DatabaseInsightsMode": "standard",
+            "PerformanceInsightsEnabled": false,
+            "DeletionProtection": false,
+            "AssociatedRoles": [],
+            "TagList": [],
+            "CustomerOwnedIpEnabled": false,
+            "NetworkType": "IPV4",
+            "ActivityStreamStatus": "stopped",
+            "BackupTarget": "region",
+            "CertificateDetails": {
+                "CAIdentifier": "rds-ca-rsa2048-g1",
+                "ValidTill": "2027-06-02T00:20:04+00:00"
+            },
+            "DedicatedLogVolume": false,
+            "IsStorageConfigUpgradeAvailable": false,
+            "EngineLifecycleSupport": "open-source-rds-extended-support-disabled"
+        }
+    ]
+}

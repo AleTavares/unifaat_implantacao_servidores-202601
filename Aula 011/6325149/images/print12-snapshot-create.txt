@@ -1,0 +1,32 @@
+{
+    "DBSnapshot": {
+        "DBSnapshotIdentifier": "snapshot-tf011-6325149",
+        "DBInstanceIdentifier": "rds-tf011-6325149",
+        "Engine": "postgres",
+        "AllocatedStorage": 20,
+        "Status": "creating",
+        "Port": 5432,
+        "AvailabilityZone": "sa-east-1b",
+        "VpcId": "vpc-04d653639c7a1fc45",
+        "InstanceCreateTime": "2026-06-02T00:51:28.720000+00:00",
+        "MasterUsername": "postgres",
+        "EngineVersion": "18.3",
+        "LicenseModel": "postgresql-license",
+        "SnapshotType": "manual",
+        "Iops": 3000,
+        "StorageThroughput": 125,
+        "OptionGroupName": "default:postgres-18",
+        "PercentProgress": 0,
+        "StorageType": "gp3",
+        "Encrypted": false,
+        "BackupRetentionPeriod": 1,
+        "PreferredBackupWindow": "01:11-01:41",
+        "DBSnapshotArn": "arn:aws:rds:sa-east-1:577638395851:snapshot:snapshot-tf011-6325149",
+        "IAMDatabaseAuthenticationEnabled": false,
+        "ProcessorFeatures": [],
+        "DbiResourceId": "db-BBX4RXD2T535KZOZ37EJYMFEP4",
+        "TagList": [],
+        "SnapshotTarget": "region",
+        "DedicatedLogVolume": false
+    }
+}

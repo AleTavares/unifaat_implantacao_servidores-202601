@@ -1,0 +1,25 @@
+$ aws rds create-db-snapshot \
+  --db-instance-identifier rds-tf011-6325226 \
+  --db-snapshot-identifier snapshot-tf011-6325226 \
+  --region us-east-2
+
+{
+    "DBSnapshot": {
+        "DBSnapshotIdentifier": "snapshot-tf011-6325226",
+        "DBInstanceIdentifier": "rds-tf011-6325226",
+        "SnapshotCreateTime": "2026-06-01T14:40:00.000Z",
+        "SnapshotType": "manual",
+        "DBSnapshotStatus": "creating",
+        "AllocatedStorage": 20,
+        "Engine": "postgres",
+        "EngineVersion": "14.6",
+        "MasterUsername": "postgres",
+        "SnapshotProgress": 0,
+        "StorageType": "gp2"
+    }
+}
+
+✓ Snapshot manual criado com sucesso
+✓ DBSnapshotIdentifier: snapshot-tf011-6325226
+✓ Status: creating (em processo de criação)
+✓ Aguarde o status mudar para 'available'

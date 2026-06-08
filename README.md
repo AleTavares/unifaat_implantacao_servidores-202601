@@ -1,51 +1,117 @@
-# Implementação de Servidor e Nuvem (Cloud)
-## Sobre o Repositório
-Este repositório contém o material completo do curso **Analise e Desenvolvimento de Sistemas** da disciplina **Implementação de Servidor e Nuvem (Cloud)** do Centro Universitário de Atibaia - [UniFAAT](https://www.unifaat.com.br/).
+# TF - Aula 11 - Armazenamento e Banco de Dados na AWS
 
-Esta disciplina foi desenvolvido para capacitar estudantes no uso de tecnologias de containerização, orquestração e deploy em nuvem, utilizando o ambiente WSL (Windows Subsystem for Linux) como base de desenvolvimento.
+**Disciplina:** Implementação de servidor e nuvem (cloud)  
+**Aula:** 11 - Armazenamento e Banco de Dados na AWS  
+**Aluno:** Claudio Luiz Pereira da Silva Neto
+**RA:** 6325101
 
-## Objetivos do Curso
+---
 
-### Objetivo Geral
-Capacitar os alunos para implementar, gerenciar e fazer deploy de aplicações containerizadas utilizando Docker, ferramentas de orquestração e serviços de nuvem AWS, preparando-os para o mercado de trabalho moderno em DevOps e Cloud Computing.
+## 📌 Questão 1: Amazon S3 (Armazenamento de Objetos)
 
-### Objetivos Específicos
-- Dominar os fundamentos de containerização com Docker
-- Construir e otimizar imagens Docker personalizadas
-- Implementar persistência de dados com volumes
-- Configurar redes Docker para comunicação entre serviços
-- Orquestrar aplicações multi-contêiner com Docker Compose e Swarm
-- Introduzir conceitos básicos de Kubernetes
-- Implementar deploy de aplicações na AWS
-- Desenvolver pipelines básicos de CI/CD
-- Integrar ferramentas de desenvolvimento no ambiente WSL/Linux
+### a) Caso de uso principal do S3
+O Amazon S3 é utilizado para armazenamento de objetos escaláveis, como:
 
-## Recursos Adicionais
+- arquivos estáticos de aplicações web (HTML, CSS, JS)
+- imagens e vídeos
+- backups e logs de sistemas
+- artefatos de deploy em pipelines DevOps
 
-- **[Solução de Problemas Comuns](troubleshooting.md)** - Guia completo de solução de problemas
-- **[Links Úteis](linksUteis.md)** - Links úteis, ferramentas e certificações
+Em DevOps, o S3 é amplamente utilizado para backup, versionamento e distribuição de arquivos.
 
-## Contribuições
-Este material foi desenvolvido para fins educacionais. Sugestões de melhorias são bem-vindas através de:
-- Issues no GitHub
-- Pull requests com correções
-- Feedback direto aos mantenedores
+---
 
-## Suporte
+### b) S3 é global ou regional? O que significa “11 noves”?
 
-### Suporte Técnico
-- **Documentação:** Consulte os arquivos Lab*.md de cada aula
-- **Troubleshooting:** Seções específicas em cada laboratório
-- **Comunidade:** Utilize as issues do GitHub
+O Amazon S3 é um serviço **regional**, mas com alta durabilidade dentro da região.
 
+A taxa de **99.999999999% (11 noves)** representa a **durabilidade dos dados**, ou seja:
+a probabilidade de perda de um objeto armazenado é extremamente baixa.
 
-## Licença
+---
 
-Este projeto está licenciado sob a [MIT License](LICENSE) - veja o arquivo LICENSE para detalhes.
+## 📌 Questão 2: EBS vs EFS
 
-## Reconhecimentos
+### a) Diferença entre EBS e EFS
 
-Desenvolvido pelo corpo docente do Centro Universitário de Atibaia (UniFAAT) para a disciplina de Implementação de Servidor e Nuvem (Cloud), com foco na preparação de profissionais para o mercado de tecnologia moderno.
+- **EBS (Elastic Block Store):**
+  - armazenamento em bloco
+  - conectado a uma única instância EC2 por vez
+  - funciona como um disco rígido virtual
 
-> **Centro Universitário de Atibaia - UniFAAT**  
-*Formando profissionais para o futuro da tecnologia* 
+- **EFS (Elastic File System):**
+  - sistema de arquivos compartilhado
+  - acessível por múltiplas instâncias EC2 simultaneamente
+  - funciona como um sistema de arquivos em rede
+
+---
+
+### b) Uso em servidor EC2
+
+O serviço mais adequado para armazenar sistema operacional e aplicação é o **EBS**, pois:
+
+- é de baixa latência
+- está diretamente acoplado à instância EC2
+- é ideal para boot e execução de sistemas
+
+---
+
+## 📌 Questão 3: Amazon RDS
+
+### a) Responsabilidades da AWS no RDS
+
+A AWS gerencia automaticamente:
+
+- backups automáticos
+- aplicação de patches de segurança
+- replicação e alta disponibilidade (Multi-AZ opcional)
+- monitoramento da infraestrutura do banco
+
+---
+
+### b) Limitação do RDS vs EC2
+
+A principal limitação do RDS é o **menor nível de controle** sobre o banco de dados.
+
+No EC2, é possível:
+- personalizar totalmente o banco
+- instalar extensões livremente
+- controlar o sistema operacional
+
+No RDS, essas ações são limitadas pela AWS.
+
+---
+
+## 📌 Questão 4: Alta Disponibilidade (Multi-AZ)
+
+### a) Funcionamento do Multi-AZ
+
+Ao habilitar Multi-AZ:
+
+- o banco primário é replicado para outra zona de disponibilidade
+- existe uma instância standby
+- a replicação é síncrona
+- ocorre failover automático em caso de falha
+
+---
+
+### b) Standby vs Read Replica
+
+- **Standby (Multi-AZ):**
+  - usado para failover automático
+  - não acessível diretamente
+  - replicação síncrona
+
+- **Read Replica:**
+  - usada para escalabilidade de leitura
+  - pode ser acessada
+  - replicação assíncrona
+
+---
+
+## 📌 Questão 5: Fluxo S3 (Simulação AWS CLI)
+
+### 1. Criar arquivo no Linux (WSL)
+
+```bash
+touch db_config.conf

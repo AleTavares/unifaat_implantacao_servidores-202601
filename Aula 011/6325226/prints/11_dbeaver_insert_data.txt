@@ -1,0 +1,21 @@
+[DBeaver - SQL Editor]
+
+File: Insert Data Script
+Connection: rds-tf011-6325226 (postgres)
+
+┌─────────────────────────────────────────────────────────────┐
+│ INSERT INTO alunos (ra, nome, email) VALUES                │
+│ ('6325128', 'Joao Silva', 'joao@email.com'),              │
+│ ('6325129', 'Maria Santos', 'maria@email.com'),           │
+│ ('6325130', 'Pedro Oliveira', 'pedro@email.com');         │
+└─────────────────────────────────────────────────────────────┘
+
+[Execute] [Format] [Save] [Find] [Replace] [Preferences]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Result: 3 rows inserted successfully
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ 3 registros inseridos na tabela 'alunos'
+✓ Dados de exemplo adicionados com sucesso
+✓ Tabela agora contém dados para demonstração

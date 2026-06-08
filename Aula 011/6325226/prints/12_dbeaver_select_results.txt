@@ -1,0 +1,32 @@
+[DBeaver - Query Results]
+
+SQL Query:
+SELECT * FROM alunos;
+
+Results Grid:
+┌────┬──────────┬─────────────────┬──────────────────┬─────────────────────┬────────┐
+│ id │ ra       │ nome            │ email            │ data_inscricao      │ status │
+├────┼──────────┼─────────────────┼──────────────────┼─────────────────────┼────────┤
+│ 1  │ 6325128  │ Joao Silva      │ joao@email.com   │ 2026-06-01 14:35:22 │ ativo  │
+├────┼──────────┼─────────────────┼──────────────────┼─────────────────────┼────────┤
+│ 2  │ 6325129  │ Maria Santos    │ maria@email.com  │ 2026-06-01 14:35:22 │ ativo  │
+├────┼──────────┼─────────────────┼──────────────────┼─────────────────────┼────────┤
+│ 3  │ 6325130  │ Pedro Oliveira  │ pedro@email.com  │ 2026-06-01 14:35:22 │ ativo  │
+└────┴──────────┴─────────────────┴──────────────────┴─────────────────────┴────────┘
+
+Query Result: 3 rows
+
+Row Details View:
+─────────────────────────
+Row 1:
+  id: 1
+  ra: 6325128
+  nome: Joao Silva
+  email: joao@email.com
+  data_inscricao: 2026-06-01 14:35:22.123456+00
+  status: ativo
+
+✓ Todos os 3 registros retornados com sucesso
+✓ Dados estão íntegros e corretos
+✓ Timestamps preenchidos automaticamente
+✓ Status padrão 'ativo' aplicado

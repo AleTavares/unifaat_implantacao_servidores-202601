@@ -1,18 +1,51 @@
-# Tarefa Final - Aula 8 - Docker Swarm
+Questoes
 
-## Questão 1: Conceito de Cluster (Teórica)
-**Resposta:** [Docker Compose = gerenciamento local e centralizado; Docker Swarm = orquestração distribuída em cluster.]
+1- a diferença é a que o swarm gerencia varios nós
 
-## Questão 2: Funções dos Nós (Teórica)
-**Resposta:** [controle e inteligência do cluster; Worker = execução de tarefas]
+2- Os Manegers é como se fosse o gerente de uma loja ele gerencia e da ordens ao works
+aonde acontece as tarefas
 
-## Questão 3: Inicialização do Swarm (Prática)
-a) Comando: `![alt text](image.png)`
-b) Driver de Rede: **o![alt text](image-1.png)**
+3-a) docker swarm init
+B) a rede Overlay
 
-## Questão 4: Criação de Service (Prática)
-a) Comando:docker service ls
-docker service ps app-stack-tf9
-![alt text](image-2.png)
-```bash
-docker service create --name web-escalavel --replicas 3 nginx:alpine
+4-A)docker service create \
+--name web-escalavel \
+--replicas 3 \
+nginx:alpine
+
+B)docker service ps web-escalavel
+
+
+5-A)docker service scale web-escalavel=5
+
+B)O Termo é tolerancia a falhas
+
+
+PARTE PRATICA
+
+Passo 1 
+ docker info | grep Swarm
+ docker swarm init
+ docker node ls
+
+Passo 2
+ docker service create \
+--name app-stack-tf9 \
+--replicas 4 \
+-p 8001:80 \
+nginx:alpine
+```
+
+Passo 3
+
+Na pasta print
+
+Passo 4
+
+docker service scale app-stack-tf9=1
+
+Passo 5
+
+docker service rm app-stack-tf9
+docker swarm leave --force
+docker info | grep Swarm

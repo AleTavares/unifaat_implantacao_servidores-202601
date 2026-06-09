@@ -1,0 +1,14 @@
+$ export RDS_ENDPOINT="rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com"
+$ echo $RDS_ENDPOINT
+rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com
+
+$ export RDS_USER="postgres"
+$ export RDS_PASSWORD="UniFAAT2026!"
+$ echo "Variáveis de Ambiente RDS Configuradas:"
+$ env | grep RDS_
+RDS_ENDPOINT=rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com
+RDS_USER=postgres
+RDS_PASSWORD=UniFAAT2026!
+
+✓ Variáveis de ambiente do RDS configuradas com sucesso
+✓ Endpoint, usuário e senha armazenados em variáveis reutilizáveis

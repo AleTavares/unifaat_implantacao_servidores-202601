@@ -1,0 +1,26 @@
+[DBeaver - SQL Editor]
+
+File: New SQL Script
+Connection: rds-tf011-6325226 (postgres)
+
+┌─────────────────────────────────────────────────────────────┐
+│ CREATE TABLE alunos (                                       │
+│     id SERIAL PRIMARY KEY,                                  │
+│     ra VARCHAR(10) UNIQUE NOT NULL,                         │
+│     nome VARCHAR(100) NOT NULL,                             │
+│     email VARCHAR(100) UNIQUE NOT NULL,                     │
+│     data_inscricao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    │
+│     status VARCHAR(10) DEFAULT 'ativo' CHECK (status       │
+│     IN ('ativo', 'inativo'))                               │
+│ );                                                          │
+└─────────────────────────────────────────────────────────────┘
+
+[Execute] [Format] [Save] [Find] [Replace] [Preferences]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Result: Table created successfully
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Tabela 'alunos' criada com sucesso
+✓ 6 colunas definidas corretamente
+✓ Constraints aplicadas (PK, UK, NN, CHECK, DEFAULT)

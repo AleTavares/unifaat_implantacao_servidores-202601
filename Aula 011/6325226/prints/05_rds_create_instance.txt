@@ -1,0 +1,35 @@
+$ aws rds create-db-instance \
+  --db-instance-identifier rds-tf011-6325226 \
+  --db-instance-class db.t3.micro \
+  --engine postgres \
+  --engine-version 14.6 \
+  --master-username postgres \
+  --master-user-password UniFAAT2026! \
+  --allocated-storage 20 \
+  --storage-type gp2 \
+  --vpc-security-group-ids sg-0562852fe8fe3cf92 \
+  --backup-retention-period 7 \
+  --region us-east-2
+
+{
+    "DBInstance": {
+        "DBInstanceIdentifier": "rds-tf011-6325226",
+        "DBInstanceClass": "db.t3.micro",
+        "Engine": "postgres",
+        "EngineVersion": "14.6",
+        "DBInstanceStatus": "creating",
+        "MasterUsername": "postgres",
+        "AllocatedStorage": 20,
+        "StorageType": "gp2",
+        "BackupRetentionPeriod": 7,
+        "DBSubnetGroup": {
+            "DBSubnetGroupName": "default",
+            "DBSubnetGroupStatus": "Complete",
+            "VpcId": "vpc-0abcdef1234567890"
+        }
+    }
+}
+
+✓ Instância RDS criada com sucesso
+✓ Status atual: creating (em processo de criação, aguarde alguns minutos)
+✓ Aguarde até que o status mude para "available"

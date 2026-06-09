@@ -1,0 +1,21 @@
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "EKSClusterRole",
+        "RoleId": "AROAZAOVPOXK6ACOKFSKT",
+        "Arn": "arn:aws:iam::619459868117:role/EKSClusterRole",
+        "CreateDate": "2026-06-08T23:19:26+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "eks.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}

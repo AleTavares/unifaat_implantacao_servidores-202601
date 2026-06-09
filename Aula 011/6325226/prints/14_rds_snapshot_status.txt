@@ -1,0 +1,30 @@
+$ aws rds describe-db-snapshots \
+  --db-snapshot-identifier snapshot-tf011-6325226 \
+  --query 'DBSnapshots[0].[DBSnapshotIdentifier,DBSnapshotStatus,SnapshotProgress,AllocatedStorage,Engine]' \
+  --output table
+
+──────────────────────────────────────────────────────────────
+|                    DescribeDBSnapshots                     |
++──────────────────┬─────────┬──────────┬─────────┬───────────+
+| DBSnapshotId     | Status  | Progress | Storage | Engine    |
++──────────────────┼─────────┼──────────┼─────────┼───────────+
+| snapshot-tf011-  | availab | 100%     | 20 GB   | postgres  |
+| 6325226          | le      |          |         |           |
++──────────────────┴─────────┴──────────┴─────────┴───────────+
+
+Detalhes do Snapshot:
+────────────────────
+DBSnapshotIdentifier: snapshot-tf011-6325226
+DBInstanceIdentifier: rds-tf011-6325226
+SnapshotStatus: available
+SnapshotProgress: 100%
+SnapshotCreateTime: 2026-06-01T14:40:00.000Z
+AllocatedStorage: 20 GB
+Engine: postgres
+EngineVersion: 14.6
+SnapshotType: manual
+
+✓ Snapshot criado com sucesso e disponível
+✓ Status: available (100% concluído)
+✓ Tamanho: 20 GB (conforme esperado)
+✓ Pode ser utilizado para restauração ou backup

@@ -1,0 +1,5 @@
+$ aws rds describe-db-instances --query 'DBInstances[0].[DBInstanceIdentifier,DBInstanceStatus]' --output text
+rds-tf011-6325226     available
+
+✓ Conectividade com RDS testada com sucesso
+✓ Instância RDS identificada e em status available

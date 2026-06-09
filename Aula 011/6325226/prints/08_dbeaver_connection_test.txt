@@ -1,0 +1,27 @@
+[DBeaver - Test Connection Result]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Test Connection - rds-tf011-6325226
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Connecting to database...
+✓ Database driver loaded
+✓ Connection successful
+✓ Database information retrieved
+
+Connection Details:
+─────────────────
+PostgreSQL 14.6
+Server: rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com
+Port: 5432
+User: postgres
+Database: postgres
+SSL: enabled
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[OK] [Close]
+
+✓ Conexão com RDS estabelecida com sucesso
+✓ Todas as verificações passaram (verde)
+✓ Pronto para criar tabelas e dados

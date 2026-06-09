@@ -1,0 +1,45 @@
+{
+    "nodegroup": {
+        "nodegroupName": "app-frontend-nodes",
+        "nodegroupArn": "arn:aws:eks:us-east-2:218550331613:nodegroup/cluster-eks-unifaat/app-frontend-nodes/becf54ed-bef3-de61-ccc0-4b2d28f15856",
+        "clusterName": "cluster-eks-unifaat",
+        "version": "1.34",
+        "releaseVersion": "1.34.8-20260529",
+        "createdAt": "2026-06-08T21:49:55.605000-03:00",
+        "modifiedAt": "2026-06-08T22:00:09.567000-03:00",
+        "status": "DELETING",
+        "capacityType": "ON_DEMAND",
+        "scalingConfig": {
+            "minSize": 2,
+            "maxSize": 3,
+            "desiredSize": 2
+        },
+        "instanceTypes": [
+            "t3.medium"
+        ],
+        "subnets": [
+            "subnet-05c2cd9d728828c68",
+            "subnet-0eaef3dfd48c22350",
+            "subnet-0576d06c011ccb124",
+            "subnet-04581a3e09e3ce8af"
+        ],
+        "amiType": "AL2023_x86_64_STANDARD",
+        "nodeRole": "arn:aws:iam::218550331613:role/EKSNodeRole",
+        "labels": {},
+        "resources": {
+            "autoScalingGroups": [
+                {
+                    "name": "eks-app-frontend-nodes-becf54ed-bef3-de61-ccc0-4b2d28f15856"
+                }
+            ]
+        },
+        "diskSize": 20,
+        "health": {
+            "issues": []
+        },
+        "updateConfig": {
+            "maxUnavailable": 1
+        },
+        "tags": {}
+    }
+}

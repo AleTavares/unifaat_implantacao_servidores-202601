@@ -1,0 +1,18 @@
+{
+    "repositories": [
+        {
+            "repositoryArn": "arn:aws:ecr:sa-east-1:577638395851:repository/app-frontend",
+            "registryId": "577638395851",
+            "repositoryName": "app-frontend",
+            "repositoryUri": "577638395851.dkr.ecr.sa-east-1.amazonaws.com/app-frontend",
+            "createdAt": "2026-06-08T21:40:23.928000-03:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+# 1. Metadados do Objeto
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+  labels:
+    app: web-app
+
+# 2. Especificação do Estado Desejado
+spec:
+  # O Deployment deve gerenciar 3 instâncias
+  replicas: 3
+  
+  # Como o Deployment encontra os Pods que ele deve gerenciar
+  selector:
+    matchLabels:
+      app: web-app
+      
+  # Template dos Pods (O QUE DEVE SER RODADO)
+  template:
+    metadata:
+      # As labels são usadas pelo Service para encontrar este Pod
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:alpine
+        ports:
+        - containerPort: 80

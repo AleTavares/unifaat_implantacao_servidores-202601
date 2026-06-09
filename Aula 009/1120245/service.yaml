@@ -1,0 +1,16 @@
+# Service - web-service-tf09
+# Expõe os Pods do Deployment nginx-deploy-tf09 via NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-tf09
+spec:
+  type: NodePort
+  selector:
+    app: web-tf09
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      # nodePort: 30000  # Opcional: K8s atribui automaticamente (30000-32767)

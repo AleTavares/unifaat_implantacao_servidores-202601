@@ -1,0 +1,5 @@
+$ psql --version
+psql (PostgreSQL) 14.6 (Ubuntu 14.6-1.pgdg22.04+1)
+
+✓ Cliente PostgreSQL versão 14.6 instalado com sucesso
+✓ Compatível com RDS PostgreSQL 14.6

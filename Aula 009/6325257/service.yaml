@@ -1,0 +1,23 @@
+# 1. Metadados do Objeto
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-tf09
+
+# 2. Especificação do Estado Desejado
+spec:
+  # Tipo NodePort: Expõe o serviço na porta de todos os Worker Nodes
+  type: NodePort
+  
+  # Selector: O Service encontra os Pods usando esta label
+  selector:
+    app: web-tf09
+    
+  # Mapeamento de Portas
+  ports:
+    # service.port: Porta onde o Service escuta (interna ao cluster)
+    - port: 80
+      # targetPort: Porta que o contêiner expõe (porta 80 do Nginx)
+      targetPort: 80
+      # nodePort: Porta que será aberta em cada Node (geralmente entre 30000-32767)
+      nodePort: 30000

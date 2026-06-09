@@ -1,0 +1,5 @@
+NAME       : VALUE                    : TYPE             : LOCATION
+profile    : <not set>                : None             : None
+access_key : ****************X6LH     : shared-credentials-file : 
+secret_key : ****************Os18     : shared-credentials-file : 
+region     : sa-east-1                : config-file      : ~/.aws/config

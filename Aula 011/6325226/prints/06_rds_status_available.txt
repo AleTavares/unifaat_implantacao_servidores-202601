@@ -1,0 +1,23 @@
+$ aws rds describe-db-instances \
+  --db-instance-identifier rds-tf011-6325226 \
+  --query 'DBInstances[0].[DBInstanceIdentifier,DBInstanceStatus,Engine,AllocatedStorage,Endpoint.Address,Endpoint.Port]' \
+  --output table
+
+--------------------------------------------------------------
+|                 DescribeDBInstances                        |
++--------------------+----------+--------+-------+----------+------+
+| DBInstanceId       | Status   | Engine | Store | Address  | Port |
++--------------------+----------+--------+-------+----------+------+
+| rds-tf011-6325226  | available| postgr | 20    | rds-tf01 | 5432 |
+|                    |          | es     | GB    | 1-632522 |      |
+|                    |          |        |       | 6.cqsz5j |      |
+|                    |          |        |       | 7j0hyx.u |      |
+|                    |          |        |       | s-east-2 |      |
+|                    |          |        |       | .rds.ama |      |
+|                    |          |        |       | z.com    |      |
++--------------------+----------+--------+-------+----------+------+
+
+✓ Instância RDS agora está disponível (status: available)
+✓ Endpoint: rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com
+✓ Porta: 5432 (padrão PostgreSQL)
+✓ Pronta para conexões de clientes

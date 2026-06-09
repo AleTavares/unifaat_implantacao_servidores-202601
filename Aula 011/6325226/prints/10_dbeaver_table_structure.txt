@@ -1,0 +1,36 @@
+[DBeaver - Database Navigator]
+
+Database Connection: rds-tf011-6325226 [postgres]
+
+ ┌─ postgres
+ │  ├─ Databases
+ │  │  └─ postgres (connected)
+ │  └─ Schemas
+ │     └─ public (active)
+ │        ├─ Tables
+ │        │  ├─ alunos (NEW)
+ │        │  │  ├─ Columns
+ │        │  │  │  ├─ id: INTEGER (SERIAL, PRIMARY KEY)
+ │        │  │  │  ├─ ra: VARCHAR(10) (UNIQUE, NOT NULL)
+ │        │  │  │  ├─ nome: VARCHAR(100) (NOT NULL)
+ │        │  │  │  ├─ email: VARCHAR(100) (UNIQUE, NOT NULL)
+ │        │  │  │  ├─ data_inscricao: TIMESTAMP (DEFAULT)
+ │        │  │  │  └─ status: VARCHAR(10) (DEFAULT, CHECK)
+ │        │  │  ├─ Constraints
+ │        │  │  │  ├─ alunos_pkey: PRIMARY KEY (id)
+ │        │  │  │  ├─ alunos_ra_key: UNIQUE (ra)
+ │        │  │  │  ├─ alunos_email_key: UNIQUE (email)
+ │        │  │  │  └─ alunos_status_check: CHECK (status)
+ │        │  │  ├─ Indexes
+ │        │  │  │  ├─ alunos_pkey
+ │        │  │  │  ├─ alunos_ra_key
+ │        │  │  │  └─ alunos_email_key
+ │        │  │  └─ Triggers
+ │        │  └─ [System Tables]
+ │        ├─ Views
+ │        └─ Procedures
+
+✓ Tabela 'alunos' visível no navegador de objetos
+✓ Estrutura completa com todas as colunas e constraints
+✓ Índices criados automaticamente para campos UNIQUE
+✓ Pronta para inserção de dados

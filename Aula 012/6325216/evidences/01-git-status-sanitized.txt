@@ -1,0 +1,6 @@
+## branch: main...origin/main
+?? Aula 012/6325216/ (new files)
+
+Aula 012/6325216/README.md
+Aula 012/6325216/lab-commands.sh
+Aula 012/6325216/evidences/

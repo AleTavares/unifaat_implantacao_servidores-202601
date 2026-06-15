@@ -1,117 +1,116 @@
-# TF - Aula 11 - Armazenamento e Banco de Dados na AWS
+# Implementação de Servidor e Nuvem (Cloud) - 2026.1
 
-**Disciplina:** Implementação de servidor e nuvem (cloud)  
-**Aula:** 11 - Armazenamento e Banco de Dados na AWS  
-**Aluno:** Claudio Luiz Pereira da Silva Neto
-**RA:** 6325101
+**Instituição:** UniFAAT - Centro Universitário  
+**Curso:** Análise e Desenvolvimento de Sistemas (ADS)  
+**Disciplina:** Implementação de Servidor e Nuvem (Cloud)  
+**Semestre:** 2026.1  
+**Professor:** Alexandre Tavares  
 
----
+## Sobre este Repositório
 
-## 📌 Questão 1: Amazon S3 (Armazenamento de Objetos)
+Este repositório contém todo o material didático, laboratórios práticos e tarefas da disciplina de **Implementação de Servidor e Nuvem**. Aqui você encontra desde os fundamentos de containers até deploy completo em produção na AWS.
 
-### a) Caso de uso principal do S3
-O Amazon S3 é utilizado para armazenamento de objetos escaláveis, como:
+O objetivo é proporcionar uma experiência prática e progressiva: cada aula constrói sobre a anterior, formando um caminho completo do desenvolvimento local ao deploy em nuvem.
 
-- arquivos estáticos de aplicações web (HTML, CSS, JS)
-- imagens e vídeos
-- backups e logs de sistemas
-- artefatos de deploy em pipelines DevOps
 
-Em DevOps, o S3 é amplamente utilizado para backup, versionamento e distribuição de arquivos.
+## Por que este repositório é importante?
 
----
+- **Material centralizado:** Labs, tarefas e referências em um só lugar
+- **Histórico de aprendizado:** Acompanhe sua evolução ao longo do semestre
+- **Prática com Git:** O fluxo de entrega (fork + PR) simula o dia a dia profissional
+- **Portfólio:** Suas entregas ficam registradas no GitHub como evidência de competência
 
-### b) S3 é global ou regional? O que significa “11 noves”?
+## Ambiente de Trabalho
 
-O Amazon S3 é um serviço **regional**, mas com alta durabilidade dentro da região.
+| Ferramenta | Função |
+|------------|--------|
+| **WSL2 (Ubuntu)** | Ambiente Linux no Windows para execução de comandos |
+| **Docker Desktop** | Construção e execução de containers |
+| **AWS CLI** | Interação com serviços AWS via terminal |
+| **kubectl** | Gerenciamento de clusters Kubernetes |
+| **Git + GitHub** | Versionamento e entrega de tarefas |
 
-A taxa de **99.999999999% (11 noves)** representa a **durabilidade dos dados**, ou seja:
-a probabilidade de perda de um objeto armazenado é extremamente baixa.
+## Estrutura do Repositório
 
----
+```
+├── Aula 001/          # Fundamentos, Contêineres e Setup WSL/Linux
+├── Aula 002/          # Arquitetura Docker e Docker Desktop no WSL
+├── Aula 003/          # Construção de Imagens com Dockerfile
+├── Aula 004/          # Volumes e Persistência de Dados
+├── Aula 005/          # Redes no Docker
+├── Aula 006/          # Docker Compose e Ambientes Multi-Contêiner
+├── Aula 008/          # Introdução à Orquestração (Docker Swarm)
+├── Aula 009/          # Fundamentos de Kubernetes (K8s)
+├── Aula 010/          # Conceitos de Infraestrutura em Nuvem e AWS
+├── Aula 011/          # Armazenamento e Banco de Dados na AWS
+├── Aula 012/          # CI/CD Básico e Registro de Imagens (ECR)
+├── Aula 013/          # Deploy de Containers na AWS com EKS
+├── estruturaCurso.md  # Cronograma completo com módulos e aulas
+├── conceitosAbordados.md  # Glossário de conceitos técnicos
+├── ferramentasTecnologias.md  # Ferramentas utilizadas no curso
+├── linksUteis.md      # Links de referência e documentação
+└── troubleshooting.md # Soluções para problemas comuns
+```
 
-## 📌 Questão 2: EBS vs EFS
+## Módulos do Curso
 
-### a) Diferença entre EBS e EFS
+| Módulo | Aulas | Tema Principal | Carga Horária |
+|--------|-------|----------------|---------------|
+| **I** | 1-2 | Fundamentos e Setup WSL/Docker | 7h |
+| **II** | 3-4 | Build de Imagens e Persistência | 7h |
+| **III** | 5-6 | Redes Docker e Docker Compose | 7h |
+| **IV** | 7-8 | Avaliação I + Orquestração (Swarm) | 7h |
+| **V** | 9-10 | Kubernetes + Intro Cloud AWS | 7h |
+| **VI** | 11-12 | AWS Storage + CI/CD com ECR | 7h |
+| **VII** | 13-15 | Deploy EKS + Monitoramento + Revisão | 10,5h |
+| **VIII** | 16 | Avaliação Final Prática | 3,5h |
 
-- **EBS (Elastic Block Store):**
-  - armazenamento em bloco
-  - conectado a uma única instância EC2 por vez
-  - funciona como um disco rígido virtual
+## Estrutura de cada Aula
 
-- **EFS (Elastic File System):**
-  - sistema de arquivos compartilhado
-  - acessível por múltiplas instâncias EC2 simultaneamente
-  - funciona como um sistema de arquivos em rede
+Cada pasta `Aula XXX/` contém:
 
----
+| Arquivo | Descrição |
+|---------|-----------|
+| `LabXXX.md` | Laboratório prático passo a passo |
+| `TAXXX.md` | Tarefa de Aula (exercícios em sala) |
+| `TFXXX.md` | Tarefa Final (entrega avaliativa) |
+| `README.md` | Resumo e objetivos da aula (quando disponível) |
 
-### b) Uso em servidor EC2
+## Fluxo de Entrega de Tarefas
 
-O serviço mais adequado para armazenar sistema operacional e aplicação é o **EBS**, pois:
+1. Faça um **fork** deste repositório
+2. Clone o fork para sua máquina local
+3. Crie uma pasta com seu **RA** dentro da aula correspondente
+4. Adicione suas respostas e evidências em um `README.md`
+5. Faça **commit** e **push** para seu fork
+6. Abra um **Pull Request** com o título: `RA - Nome do Aluno`
 
-- é de baixa latência
-- está diretamente acoplado à instância EC2
-- é ideal para boot e execução de sistemas
-
----
-
-## 📌 Questão 3: Amazon RDS
-
-### a) Responsabilidades da AWS no RDS
-
-A AWS gerencia automaticamente:
-
-- backups automáticos
-- aplicação de patches de segurança
-- replicação e alta disponibilidade (Multi-AZ opcional)
-- monitoramento da infraestrutura do banco
-
----
-
-### b) Limitação do RDS vs EC2
-
-A principal limitação do RDS é o **menor nível de controle** sobre o banco de dados.
-
-No EC2, é possível:
-- personalizar totalmente o banco
-- instalar extensões livremente
-- controlar o sistema operacional
-
-No RDS, essas ações são limitadas pela AWS.
-
----
-
-## 📌 Questão 4: Alta Disponibilidade (Multi-AZ)
-
-### a) Funcionamento do Multi-AZ
-
-Ao habilitar Multi-AZ:
-
-- o banco primário é replicado para outra zona de disponibilidade
-- existe uma instância standby
-- a replicação é síncrona
-- ocorre failover automático em caso de falha
-
----
-
-### b) Standby vs Read Replica
-
-- **Standby (Multi-AZ):**
-  - usado para failover automático
-  - não acessível diretamente
-  - replicação síncrona
-
-- **Read Replica:**
-  - usada para escalabilidade de leitura
-  - pode ser acessada
-  - replicação assíncrona
-
----
-
-## 📌 Questão 5: Fluxo S3 (Simulação AWS CLI)
-
-### 1. Criar arquivo no Linux (WSL)
+### Atualizando o Fork
 
 ```bash
-touch db_config.conf
+git remote add upstream https://github.com/professor-ale/unifaat_implantacao_servidores-202601.git
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+## Requisitos do Ambiente
+
+- Windows 10/11 com WSL2 habilitado
+- Ubuntu (via Microsoft Store)
+- Docker Desktop com integração WSL2
+- Conta AWS Academy ou AWS Free Tier
+- Git instalado no WSL
+- Editor de código (VS Code recomendado)
+
+## Links Úteis
+
+- [Documentação Docker](https://docs.docker.com/)
+- [Documentação Kubernetes](https://kubernetes.io/docs/)
+- [AWS CLI Reference](https://docs.aws.amazon.com/cli/)
+- [AWS EKS User Guide](https://docs.aws.amazon.com/eks/)
+
+## Licença
+
+Este material é de uso educacional para a disciplina de Implementação de Servidor e Nuvem do curso de ADS da UniFAAT - Semestre 2026.1.

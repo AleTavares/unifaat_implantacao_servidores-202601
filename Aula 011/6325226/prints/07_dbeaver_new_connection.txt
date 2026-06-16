@@ -1,0 +1,18 @@
+[DBeaver - New Database Connection]
+
+Connection Name: rds-tf011-6325226
+Driver: PostgreSQL
+
+[Main] [Network] [SSL] [Shell Commands]
+
+Server Host: rds-tf011-6325226.cqsz5j7j0hyx.us-east-2.rds.amazonaws.com
+Port: 5432
+Database: postgres
+Username: postgres
+Password: ••••••••••
+
+[Show Details] [Test Connection] [Finish] [Cancel]
+
+✓ Formulário de conexão preenchido corretamente
+✓ Todos os parâmetros de conexão configurados
+✓ Pronto para testar a conexão

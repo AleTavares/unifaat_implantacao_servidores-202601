@@ -1,0 +1,1 @@
+rds-tf011-6325149	available	rds-tf011-6325149.cfcaieeg4kkz.sa-east-1.rds.amazonaws.com	5432	postgres

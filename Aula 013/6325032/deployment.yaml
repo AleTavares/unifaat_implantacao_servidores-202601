@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ads-site
+  namespace: ads-unifaat
+  labels:
+    app: ads-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ads-site
+  template:
+    metadata:
+      labels:
+        app: ads-site
+    spec:
+      containers:
+        - name: ads-site
+          image: 975868896086.dkr.ecr.sa-east-1.amazonaws.com/ads-unifaat-site:v1.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10

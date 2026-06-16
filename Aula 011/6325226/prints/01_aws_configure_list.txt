@@ -1,0 +1,9 @@
+$ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                <not set>             None    None
+access_key     **********************XXXX shared-credentials-file    
+secret_key     **********************YYYY shared-credentials-file    
+    region                us-east-2      config-file    ~/.aws/config
+
+✓ Credenciais AWS configuradas corretamente na região us-east-2

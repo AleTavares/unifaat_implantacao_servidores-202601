@@ -1,0 +1,14 @@
+# Verificacao de imagem no ECR
+
+aws ecr describe-images --repository-name ads-unifaat-site --region sa-east-1 --query 'imageDetails[].{Tag:imageTags[0], Pushed:imagePushedAt}' --output table
+
+Resultado:
+------------------------------------------------------
+|                   DescribeImages                   |
++-----------------------------------+-------+--------+
+|              Pushed               | Size  |  Tag   |
++-----------------------------------+-------+--------+
+|  2026-06-15T20:49:14.820000-03:00 |  None |  v1.0  |
++-----------------------------------+-------+--------+
+
+Status: SUCESSO - Imagem v1.0 localizada no repositorio ECR

@@ -1,0 +1,41 @@
+# Limpeza Completa de Recursos
+
+## Recursos Deletados (em ordem):
+
+1. Service LoadBalancer ✅
+   kubectl delete svc ads-site-service -n ads-unifaat
+
+2. Deployment ✅
+   kubectl delete deployment ads-site -n ads-unifaat
+
+3. Namespace ✅
+   kubectl delete namespace ads-unifaat
+
+4. Node Group ✅
+   aws eks delete-nodegroup --cluster-name cluster-eks-ads --nodegroup-name ads-app-nodes
+   Status: DELETING → DELETED (~5 min)
+
+5. Cluster EKS ✅
+   aws eks delete-cluster --name cluster-eks-ads
+   Status: DELETING → DELETED (~5 min)
+
+6. VPC Stack (CloudFormation) ✅
+   aws cloudformation delete-stack --stack-name eks-vpc-ads
+   Status: DELETE_IN_PROGRESS → DELETE_COMPLETE (~3-5 min)
+
+7. IAM Roles ✅
+   - EKSClusterRole deletado
+   - EKSNodeRole deletado
+   - Politicas desanexadas
+
+## Resumo de Limpeza
+
+Tempo total de limpeza: ~20 minutos
+Status: SUCESSO - Todos os recursos EKS removidos
+Mantem: Repositorio ECR (reutilizavel)
+
+Verificacao final:
+- Nenhum cluster EKS ativo
+- Nenhuma VPC eks-vpc-ads
+- Nenhuma role EKSClusterRole ou EKSNodeRole
+- ECR repository mantido em sa-east-1 com imagem v1.0

@@ -1,0 +1,27 @@
+# Teste de Resiliencia (Self-Healing)
+
+## Antes de deletar:
+kubectl get pods -n ads-unifaat
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-6df8cf7c44-5jms4   1/1     Running   0          2m18s
+ads-site-6df8cf7c44-t24f9   1/1     Running   0          2m18s
+
+## Deletando pod:
+kubectl delete pod ads-site-6df8cf7c44-5jms4 -n ads-unifaat
+pod "ads-site-6df8cf7c44-5jms4" deleted from ads-unifaat namespace
+
+## Apos deleção (5 segundos):
+kubectl get pods -n ads-unifaat
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-6df8cf7c44-q7mbk   0/1     Running   0          5s
+ads-site-6df8cf7c44-t24f9   1/1     Running   0          2m26s
+
+## Status final (12 segundos apos deleção):
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-6df8cf7c44-q7mbk   0/1     Running   0          12s
+ads-site-6df8cf7c44-t24f9   1/1     Running   0          2m33s
+
+Status: SUCESSO - Pod deletado recriado automaticamente demonstrando self-healing do Kubernetes
+- Pod original (5jms4) foi removido
+- Novo pod (q7mbk) foi criado em 5 segundos
+- Deployment manteve 2 replicas conforme desejado

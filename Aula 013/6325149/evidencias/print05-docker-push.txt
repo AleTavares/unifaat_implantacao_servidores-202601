@@ -1,0 +1,21 @@
+# Push da imagem para ECR
+
+docker push 577638395851.dkr.ecr.sa-east-1.amazonaws.com/ads-unifaat-site:v1.0
+
+Resultado dos layers:
+de1b677d8c00: Pushed
+519e17a6ddad: Pushed
+907d6dfb009e: Pushed
+f2d875102ede: Pushed
+e654dbbbb9e1: Pushed
+a5008f4a4b25: Pushed
+038c2faef17a: Pushed
+43f834d60d8a: Pushed
+94d083cf706a: Pushed
+abaae85d1626: Pushed
+fbaed3f7fcbe: Pushed
+6a0ac1617861: Pushed
+
+v1.0: digest: sha256:dcdfdbbaacdc5a871439919b2b0f5f65c7fab0425cb630ab8e725a0df562a543 size: 856
+
+Status: SUCESSO - Imagem enviada para ECR com sucesso

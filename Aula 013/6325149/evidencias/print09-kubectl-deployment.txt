@@ -1,0 +1,9 @@
+# Status do Deployment
+
+kubectl get deployments -n ads-unifaat
+
+Resultado:
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+ads-site   2/2     2            2           23s
+
+Status: SUCESSO - 2/2 replicas disponibles

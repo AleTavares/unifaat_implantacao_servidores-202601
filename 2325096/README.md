@@ -65,10 +65,10 @@ kubectl get svc web-app -n minha-app
 Abaixo estão as evidências da aplicação web construída e testada localmente via Docker Desktop no ambiente WSL2.
 
 #### 1. Build da Imagem Docker!
-<img width="1180" height="117" alt="print2" src="https://github.com/user-attachments/assets/6cc3a54a-8f8f-4717-bab4-5b1e3db3e830" />
+![print1](https://github.com/user-attachments/assets/6cc3a54a-8f8f-4717-bab4-5b1e3db3e830)
 
 #### 2. Teste Local (Curl ou Navegador)
-<img width="1536" height="690" alt="print-ads" src="https://github.com/user-attachments/assets/189d22ef-da08-4ebd-b7eb-fca195cbc3a9" />
+![print2](https://github.com/user-attachments/assets/189d22ef-da08-4ebd-b7eb-fca195cbc3a9)
 
 
 ## ⚠️ Observações

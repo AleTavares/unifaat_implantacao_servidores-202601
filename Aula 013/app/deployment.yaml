@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ads-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ads-site
+  template:
+    metadata:
+      labels:
+        app: ads-site
+    spec:
+      containers:
+      - name: ads-site
+        image: 275695104268.dkr.ecr.us-east-2.amazonaws.com/ads-unifaat-site:v1.0
+        ports:
+        - containerPort: 80

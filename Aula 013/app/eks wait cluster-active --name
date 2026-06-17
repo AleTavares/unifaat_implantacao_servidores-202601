@@ -1,0 +1,60 @@
+{
+    "cluster": {
+        "name": "cluster-eks-ads",
+        "arn": "arn:aws:eks:us-east-2:275695104268:cluster/cluster-eks-ads",
+        "createdAt": "2026-06-16T21:16:03.199000-03:00",
+        "version": "1.32",
+        "roleArn": "arn:aws:iam::275695104268:role/EKSClusterRole-ADS",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-0524deb922128885e",
+                "subnet-08e807eaca38b5293",
+                "subnet-07b35685065bc9367",
+                "subnet-012244df918979577"
+            ],
+            "securityGroupIds": [],
+            "vpcId": "vpc-0d4140f90bf404767",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false,
+            "publicAccessCidrs": [
+                "0.0.0.0/0"
+            ]
+        },
+        "kubernetesNetworkConfig": {
+            "serviceIpv4Cidr": "10.100.0.0/16",
+            "ipFamily": "ipv4",
+            "elasticLoadBalancing": {
+                "enabled": false
+            }
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "CREATING",
+        "certificateAuthority": {},
+        "platformVersion": "eks.46",
+        "tags": {},
+        "accessConfig": {
+            "bootstrapClusterCreatorAdminPermissions": true,
+            "authenticationMode": "CONFIG_MAP"
+        },
+        "upgradePolicy": {
+            "supportType": "EXTENDED"
+        },
+        "deletionProtection": false,
+        "controlPlaneScalingConfig": {
+            "tier": "standard"
+        }
+    }
+}

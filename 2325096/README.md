@@ -58,3 +58,18 @@ kubectl scale deployment web-app --replicas=5 -n minha-app
 # e) Verificar status e endpoint
 kubectl get pods -n minha-app
 kubectl get svc web-app -n minha-app
+
+## 📸 Evidências Práticas da Execução (Lab013)
+
+### Parte 1: Construção e Teste Local
+Abaixo estão as evidências da aplicação web construída e testada localmente via Docker Desktop no ambiente WSL2.
+
+#### 1. Build da Imagem Docker!
+<img width="1180" height="117" alt="print2" src="https://github.com/user-attachments/assets/6cc3a54a-8f8f-4717-bab4-5b1e3db3e830" />
+
+#### 2. Teste Local (Curl ou Navegador)
+<img width="1536" height="690" alt="print-ads" src="https://github.com/user-attachments/assets/189d22ef-da08-4ebd-b7eb-fca195cbc3a9" />
+
+
+## ⚠️ Observações
+A estrutura lógica e a sintaxe de todos os arquivos de configuração (Dockerfile, index.html, styles.css) e os comandos imperativos foram validados localmente com sucesso, conforme as evidências da Parte 1.

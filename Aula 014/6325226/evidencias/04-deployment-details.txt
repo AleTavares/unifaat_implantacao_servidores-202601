@@ -1,0 +1,42 @@
+$ kubectl describe deployment ads-site -n ads-unifaat
+Name:                   ads-site
+Namespace:              ads-unifaat
+CreationTimestamp:      Mon, 22 Jun 2026 20:24:14 -0300
+Labels:                 app=ads-site
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=ads-site
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=ads-site
+  Containers:
+   ads-site:
+    Image:      ads-unifaat-site:v1.0
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:     100m
+      memory:  128Mi
+    Requests:
+      cpu:         50m
+      memory:      64Mi
+    Liveness:      http-get http://:80/ delay=10s timeout=1s period=30s #success=1 #failure=3
+    Readiness:     http-get http://:80/ delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   ads-site-7ccbf4857c (2/2 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  5m15s  deployment-controller  Scaled up replica set ads-site-7ccbf4857c from 0 to 2

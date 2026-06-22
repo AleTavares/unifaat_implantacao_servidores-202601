@@ -1,0 +1,131 @@
+$ kubectl get pods -n ads-unifaat -o wide
+NAME                        READY   STATUS      RESTARTS   AGE     IP            NODE                          NOMINATED NODE   READINESS GATES
+ads-site-7ccbf4857c-k65c9   1/1     Running     0          5m14s   10.244.0.12   tf-kubernetes-control-plane   <none>           <none>
+ads-site-7ccbf4857c-wv65r   1/1     Running     0          5m15s   10.244.0.11   tf-kubernetes-control-plane   <none>           <none>
+load-test                   0/1     Completed   0          65s     10.244.0.15   tf-kubernetes-control-plane   <none>           <none>
+
+$ kubectl describe pods -n ads-unifaat -l app=ads-site
+Name:             ads-site-7ccbf4857c-k65c9
+Namespace:        ads-unifaat
+Priority:         0
+Service Account:  default
+Node:             tf-kubernetes-control-plane/172.18.0.2
+Start Time:       Mon, 22 Jun 2026 20:24:15 -0300
+Labels:           app=ads-site
+                  pod-template-hash=7ccbf4857c
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.12
+IPs:
+  IP:           10.244.0.12
+Controlled By:  ReplicaSet/ads-site-7ccbf4857c
+Containers:
+  ads-site:
+    Container ID:   containerd://9922ecd589cec94ed25f44363622d50f7393462f7d8eba2f1d86015f013c91aa
+    Image:          ads-unifaat-site:v1.0
+    Image ID:       sha256:a89a6a40f8a8894dad9061688fbcbfa9d5e72af6c0d447d744ed8d3949281296
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 22 Jun 2026 20:24:19 -0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     100m
+      memory:  128Mi
+    Requests:
+      cpu:        50m
+      memory:     64Mi
+    Liveness:     http-get http://:80/ delay=10s timeout=1s period=30s #success=1 #failure=3
+    Readiness:    http-get http://:80/ delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2sj5g (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-2sj5g:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  5m14s  default-scheduler  Successfully assigned ads-unifaat/ads-site-7ccbf4857c-k65c9 to tf-kubernetes-control-plane
+  Normal  Pulled     5m12s  kubelet            Container image "ads-unifaat-site:v1.0" already present on machine
+  Normal  Created    5m12s  kubelet            Created container: ads-site
+  Normal  Started    5m10s  kubelet            Started container ads-site
+
+
+Name:             ads-site-7ccbf4857c-wv65r
+Namespace:        ads-unifaat
+Priority:         0
+Service Account:  default
+Node:             tf-kubernetes-control-plane/172.18.0.2
+Start Time:       Mon, 22 Jun 2026 20:24:15 -0300
+Labels:           app=ads-site
+                  pod-template-hash=7ccbf4857c
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.11
+IPs:
+  IP:           10.244.0.11
+Controlled By:  ReplicaSet/ads-site-7ccbf4857c
+Containers:
+  ads-site:
+    Container ID:   containerd://041a1170b3f045a823f758998fdda497e854701124edff2cb9a283cecdc0131e
+    Image:          ads-unifaat-site:v1.0
+    Image ID:       sha256:a89a6a40f8a8894dad9061688fbcbfa9d5e72af6c0d447d744ed8d3949281296
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 22 Jun 2026 20:24:19 -0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     100m
+      memory:  128Mi
+    Requests:
+      cpu:        50m
+      memory:     64Mi
+    Liveness:     http-get http://:80/ delay=10s timeout=1s period=30s #success=1 #failure=3
+    Readiness:    http-get http://:80/ delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xp7gb (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xp7gb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  5m14s  default-scheduler  Successfully assigned ads-unifaat/ads-site-7ccbf4857c-wv65r to tf-kubernetes-control-plane
+  Normal  Pulled     5m12s  kubelet            Container image "ads-unifaat-site:v1.0" already present on machine
+  Normal  Created    5m12s  kubelet            Created container: ads-site
+  Normal  Started    5m10s  kubelet            Started container ads-site

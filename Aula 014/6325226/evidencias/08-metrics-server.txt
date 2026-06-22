@@ -1,0 +1,7 @@
+$ kubectl get pods -n kube-system -l k8s-app=metrics-server
+NAME                              READY   STATUS    RESTARTS   AGE
+metrics-server-5b57c547cb-mrs8j   1/1     Running   0          4m24s
+
+$ kubectl get deployment metrics-server -n kube-system
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+metrics-server   1/1     1            1           4m45s

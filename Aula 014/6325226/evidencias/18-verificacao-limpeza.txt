@@ -1,0 +1,10 @@
+$ kubectl get all -n ads-unifaat
+
+$ kubectl get namespaces
+NAME                 STATUS   AGE
+default              Active   34h
+hotel-system         Active   33h
+kube-node-lease      Active   34h
+kube-public          Active   34h
+kube-system          Active   34h
+local-path-storage   Active   34h

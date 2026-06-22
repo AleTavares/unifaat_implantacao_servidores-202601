@@ -1,0 +1,5 @@
+$ kubectl get pod load-test -n ads-unifaat
+NAME        READY   STATUS      RESTARTS   AGE
+load-test   0/1     Completed   0          118s
+
+$ kubectl logs load-test -n ads-unifaat

@@ -1,0 +1,22 @@
+$ kubectl config current-context
+kind-tf-kubernetes
+
+$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://127.0.0.1:46697
+  name: kind-tf-kubernetes
+contexts:
+- context:
+    cluster: kind-tf-kubernetes
+    user: kind-tf-kubernetes
+  name: kind-tf-kubernetes
+current-context: kind-tf-kubernetes
+kind: Config
+users:
+- name: kind-tf-kubernetes
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED

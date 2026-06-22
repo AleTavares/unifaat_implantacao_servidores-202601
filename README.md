@@ -45,12 +45,29 @@ O objetivo é proporcionar uma experiência prática e progressiva: cada aula co
 ├── Aula 011/          # Armazenamento e Banco de Dados na AWS
 ├── Aula 012/          # CI/CD Básico e Registro de Imagens (ECR)
 ├── Aula 013/          # Deploy de Containers na AWS com EKS
+│   ├── Lab013.md      # Lab completo: Docker → ECR → EKS → LoadBalancer
+│   ├── TF013.md       # Tarefa final com evidências do lab
+│   ├── app/           # Aplicação web do curso de ADS (HTML + CSS + Dockerfile)
+│   └── cleanup.sh     # Script de limpeza automatizada de recursos AWS
+├── ProvaSubPrimBim.md # Prova substitutiva 1º bimestre (Aulas 1-6)
+├── ProvaSubSegBim.md  # Prova substitutiva 2º bimestre (Aulas 7-14)
+├── ProvaExame.md      # Prova de exame (conteúdo completo)
+├── ProvaExameSub.md   # Prova de exame substitutivo (conteúdo completo)
 ├── estruturaCurso.md  # Cronograma completo com módulos e aulas
 ├── conceitosAbordados.md  # Glossário de conceitos técnicos
-├── ferramentasTecnologias.md  # Ferramentas utilizadas no curso
-├── linksUteis.md      # Links de referência e documentação
-└── troubleshooting.md # Soluções para problemas comuns
+└── README.md          # Este arquivo
 ```
+
+## Avaliações
+
+| Avaliação | Conteúdo | Formato |
+|-----------|----------|---------|
+| **Prova Sub. 1º Bim** | Aulas 1-6 (Docker fundamentals) | 7 múltipla escolha + 3 dissertativas |
+| **Prova Sub. 2º Bim** | Aulas 7-14 (Orquestração + AWS) | 7 múltipla escolha + 3 dissertativas |
+| **Prova Exame** | Aulas 1-14 (Conteúdo completo) | 7 múltipla escolha + 3 dissertativas |
+| **Prova Exame Sub.** | Aulas 1-14 (Conteúdo completo) | 7 múltipla escolha + 3 dissertativas |
+
+> Todas as provas valem 10 pontos: 4 pontos (múltipla escolha) + 6 pontos (dissertativas).
 
 ## Módulos do Curso
 

@@ -308,3 +308,5 @@ Verificação da imagem publicada no ECR.
 Durante a execução do laboratório ocorreu um problema inicial de autenticação na AWS CLI relacionado às credenciais de acesso. Após a atualização das credenciais, foi possível realizar o login, criar o repositório ECR, construir a imagem Docker e prosseguir com a atividade normalmente.
 
 Todos os recursos criados deverão ser removidos ao final da atividade para evitar cobranças na conta AWS.
+
+Durante a execução do laboratório foi possível concluir todas as etapas relacionadas ao Docker e Amazon ECR. Ao tentar acessar o Amazon EKS foi retornado o erro SubscriptionRequiredException, indicando que a conta AWS utilizada não possui assinatura ou permissão para utilização do serviço EKS. As evidências coletadas até esse ponto foram anexadas conforme solicitado.

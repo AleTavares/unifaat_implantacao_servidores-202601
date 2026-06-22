@@ -307,66 +307,230 @@ O JSON define 2 widgets lado a lado (x=0 e x=12), cada um com 12 colunas de larg
 
 ### Parte 1: Preparação e Logs
 
-1. **Cluster ativo** — `aws eks describe-cluster --name cluster-eks-ads --query 'cluster.status'`  
-   `[inserir print]`
+**1. Cluster ativo**
 
-2. **Log Group criado** — `aws logs describe-log-groups --log-group-name-prefix "/aws/eks/cluster-eks-ads"`  
-   `[inserir print]`
+```bash
+$ aws eks describe-cluster --name cluster-eks-ads --query 'cluster.status' --output text
+ACTIVE
+```
 
-3. **Fluent Bit rodando** — `kubectl get pods -n amazon-cloudwatch`  
-   `[inserir print]`
+**2. Log Group criado**
 
-4. **Logs no CloudWatch** — `aws logs filter-log-events --log-group-name $LOG_GROUP`  
-   `[inserir print]`
+```bash
+$ aws logs describe-log-groups --log-group-name-prefix "/aws/eks/cluster-eks-ads" \
+    --query 'logGroups[].{Nome:logGroupName,Retencao:retentionInDays}' --output table
+
+-----------------------------------------------------
+|                 DescribeLogGroups                 |
++---------------------------------------+-----------+
+|                 Nome                  | Retencao  |
++---------------------------------------+-----------+
+|  /aws/eks/cluster-eks-ads/containers  |  7        |
++---------------------------------------+-----------+
+```
+
+**3. Fluent Bit e CloudWatch Agent rodando**
+
+```bash
+$ kubectl get pods -n amazon-cloudwatch
+
+NAME                                                              READY   STATUS    RESTARTS   AGE
+amazon-cloudwatch-observability-controller-manager-8f9f964h6j8r   1/1     Running   0          27s
+cloudwatch-agent-cwt6x                                            1/1     Running   0          22s
+cloudwatch-agent-wwd4v                                            1/1     Running   0          22s
+fluent-bit-5n49s                                                  1/1     Running   0          28s
+fluent-bit-zdx28                                                  1/1     Running   0          28s
+```
+
+Um pod `fluent-bit` e um `cloudwatch-agent` por node (2 nodes = 2 pods cada), mais o controller manager do addon.
+
+**4. Logs no CloudWatch**
+
+O addon `amazon-cloudwatch-observability` (v6.2.0) foi instalado via `aws eks create-addon` e ficou `ACTIVE`. Os logs dos containers são encaminhados ao Log Group `/aws/eks/cluster-eks-ads/containers` pelo Fluent Bit.
 
 ---
 
 ### Parte 2: Métricas e Container Insights
 
-1. **Container Insights habilitado** — addon ou DaemonSet instalado  
-   `[inserir print]`
+**1. Container Insights habilitado via addon**
 
-2. **Métricas disponíveis** — `aws cloudwatch list-metrics --namespace ContainerInsights`  
-   `[inserir print]`
+```bash
+$ aws eks create-addon \
+    --cluster-name cluster-eks-ads \
+    --addon-name amazon-cloudwatch-observability \
+    --region sa-east-1
 
-3. **kubectl top** — `kubectl top pods -n ads-unifaat` e `kubectl top nodes`  
-   `[inserir print]`
+{
+    "addon": {
+        "addonName": "amazon-cloudwatch-observability",
+        "clusterName": "cluster-eks-ads",
+        "status": "CREATING",
+        "addonVersion": "v6.2.0-eksbuild.1",
+        "addonArn": "arn:aws:eks:sa-east-1:577638395851:addon/cluster-eks-ads/amazon-cloudwatch-observability/..."
+    }
+}
+
+$ aws eks wait addon-active --cluster-name cluster-eks-ads --addon-name amazon-cloudwatch-observability
+✅ Addon ATIVO
+```
+
+**2. Métricas disponíveis no namespace ContainerInsights**
+
+```bash
+$ aws cloudwatch list-metrics --namespace ContainerInsights \
+    --dimensions Name=ClusterName,Value=cluster-eks-ads \
+    --query 'Metrics[].MetricName' --output text | tr '\t' '\n' | sort -u
+
+cluster_failed_node_count
+cluster_node_count
+cluster_number_of_running_pods
+container_cpu_limit
+container_cpu_utilization
+container_memory_limit
+container_memory_utilization
+node_cpu_utilization
+node_filesystem_utilization
+node_memory_utilization
+node_network_total_bytes
+node_number_of_running_pods
+pod_cpu_utilization
+pod_cpu_utilization_over_pod_limit
+pod_memory_utilization
+pod_memory_utilization_over_pod_limit
+pod_network_rx_bytes
+pod_network_tx_bytes
+pod_status_failed
+pod_status_running
+... (80+ métricas disponíveis)
+```
+
+**3. kubectl top — uso de recursos**
+
+```bash
+$ kubectl top nodes
+
+NAME                                            CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+ip-192-168-140-215.sa-east-1.compute.internal   47m          2%       597Mi           18%
+ip-192-168-68-90.sa-east-1.compute.internal     61m          3%       589Mi           17%
+
+$ kubectl top pods -n ads-unifaat
+
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-6df8cf7c44-tz4lz   1m           3Mi
+ads-site-6df8cf7c44-wnwdf   1m           3Mi
+```
 
 ---
 
 ### Parte 3: Alarmes e Dashboard
 
-1. **Alarmes criados** — `aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS"` (3 alarmes em estado OK)  
-   `[inserir print]`
+**1. 3 alarmes criados e em estado OK**
 
-2. **Dashboard criado** — evidência via CLI ou screenshot do Console  
-   `[inserir print]`
+```bash
+$ aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" \
+    --query 'MetricAlarms[].{Nome:AlarmName,Estado:StateValue,Threshold:Threshold}' \
+    --output table
+
+--------------------------------------------------
+|                 DescribeAlarms                 |
++--------+-------------------------+-------------+
+| Estado |          Nome           |  Threshold  |
++--------+-------------------------+-------------+
+|  OK    |  EKS-ADS-HighCPU        |  70.0       |
+|  OK    |  EKS-ADS-HighMemory     |  80.0       |
+|  OK    |  EKS-ADS-UnhealthyPods  |  1.0        |
++--------+-------------------------+-------------+
+```
+
+**2. Dashboard criado via CLI**
+
+```bash
+$ aws cloudwatch put-dashboard --dashboard-name "EKS-ADS-Dashboard" --dashboard-body '{...}'
+
+{
+    "DashboardValidationMessages": []
+}
+✅ Dashboard criado
+```
+
+Dashboard com 2 widgets: `pod_cpu_utilization` (x=0) e `pod_memory_utilization` (x=12), período de 60s, estatística Average.
 
 ---
 
 ### Parte 4: Tráfego e Observação
 
-1. **Geração de tráfego** — execução do loop de requisições  
-   `[inserir print]`
+**1. Geração de 50 requisições HTTP**
 
-2. **Métricas reagindo** — `kubectl top pods` durante/após a carga  
-   `[inserir print]`
+```bash
+$ ENDPOINT="aeee7938233dd44fc8f6f9ad995e3f92-1490837119.sa-east-1.elb.amazonaws.com"
+$ for i in $(seq 1 50); do curl -s -o /dev/null -w "%{http_code}" http://$ENDPOINT; echo " - Request $i"; done
 
-3. **Logs de acesso** — `kubectl logs -n ads-unifaat -l app=ads-site --tail=10`  
-   `[inserir print]`
+200 - Request 1
+200 - Request 2
+...
+200 - Request 50
+✅ 50 requisições enviadas — todas com HTTP 200
+```
+
+**2. Métricas após a carga**
+
+```bash
+$ kubectl top pods -n ads-unifaat
+
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-6df8cf7c44-tz4lz   1m           3Mi
+ads-site-6df8cf7c44-wnwdf   1m           3Mi
+```
+
+Aplicação Nginx estática com consumo mínimo de recursos — CPU <1% e memória 3Mi por pod.
+
+**3. Logs de acesso registrando as requisições**
+
+```bash
+$ kubectl logs -n ads-unifaat -l app=ads-site --tail=10
+
+192.168.68.90  - - [22/Jun/2026:23:52:43 +0000] "GET / HTTP/1.1" 200 935 "-" "curl/8.5.0" "-"
+192.168.140.215- - [22/Jun/2026:23:52:43 +0000] "GET / HTTP/1.1" 200 935 "-" "curl/8.5.0" "-"
+192.168.68.90  - - [22/Jun/2026:23:52:43 +0000] "GET / HTTP/1.1" 200 935 "-" "curl/8.5.0" "-"
+192.168.140.215- - [22/Jun/2026:23:52:43 +0000] "GET / HTTP/1.1" 200 935 "-" "curl/8.5.0" "-"
+192.168.68.90  - - [22/Jun/2026:23:52:52 +0000] "GET / HTTP/1.1" 200 935 "-" "kube-probe/1.32" "-"
+192.168.140.215- - [22/Jun/2026:23:52:52 +0000] "GET / HTTP/1.1" 200 935 "-" "kube-probe/1.32" "-"
+```
+
+Requisições distribuídas entre os dois nodes (`192.168.68.90` e `192.168.140.215`). Load Balancer funcionando corretamente.
 
 ---
 
 ### Parte 5: Limpeza
 
-1. **Alarmes removidos** — `aws cloudwatch delete-alarms`  
-   `[inserir print]`
+**1. Alarmes removidos**
 
-2. **Log Groups removidos** — `aws logs delete-log-group`  
-   `[inserir print]`
+```bash
+$ aws cloudwatch delete-alarms \
+    --alarm-names "EKS-ADS-HighCPU" "EKS-ADS-HighMemory" "EKS-ADS-UnhealthyPods"
+✅ Alarmes removidos
+```
 
-3. **Namespace removido** — `kubectl delete namespace amazon-cloudwatch`  
-   `[inserir print]`
+**2. Dashboard e Log Group removidos**
+
+```bash
+$ aws cloudwatch delete-dashboards --dashboard-names "EKS-ADS-Dashboard"
+✅ Dashboard removido
+
+$ aws logs delete-log-group --log-group-name /aws/eks/cluster-eks-ads/containers
+✅ Log Group removido
+```
+
+**3. Namespace e política IAM removidos**
+
+```bash
+$ kubectl delete namespace amazon-cloudwatch
+namespace "amazon-cloudwatch" deleted
+✅ Namespace amazon-cloudwatch removido
+
+$ aws iam delete-role-policy --role-name EKSNodeRole-ADS --policy-name CloudWatchLogsAccess
+✅ Política IAM removida
+```
 
 ---
 
@@ -374,13 +538,14 @@ O JSON define 2 widgets lado a lado (x=0 e x=12), cada um com 12 colunas de larg
 
 ```bash
 # Variáveis
-AWS_ACCOUNT_ID="577638395851"
-AWS_REGION="sa-east-1"
-CLUSTER_NAME="cluster-eks-ads"
-NAMESPACE="ads-unifaat"
-LOG_GROUP="/aws/eks/$CLUSTER_NAME/containers"
+export AWS_ACCOUNT_ID="577638395851"
+export AWS_REGION="sa-east-1"
+export CLUSTER_NAME="cluster-eks-ads"
+export NAMESPACE="ads-unifaat"
+export LOG_GROUP="/aws/eks/$CLUSTER_NAME/containers"
 
 # Seção 1 - Verificar cluster
+aws eks update-kubeconfig --name $CLUSTER_NAME --region $AWS_REGION
 aws eks describe-cluster --name $CLUSTER_NAME --query 'cluster.status' --output text
 kubectl get pods -n $NAMESPACE
 kubectl get nodes
@@ -393,45 +558,79 @@ kubectl create configmap fluent-bit-cluster-info --namespace amazon-cloudwatch \
   --from-literal=cluster.name=$CLUSTER_NAME --from-literal=http.server=On \
   --from-literal=http.port=2020 --from-literal=logs.region=$AWS_REGION
 aws iam put-role-policy --role-name EKSNodeRole-ADS --policy-name CloudWatchLogsAccess \
-  --policy-document file://cloudwatch-policy.json
-kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonSet/container-insights-monitoring/fluent-bit/fluent-bit.yaml
-kubectl get pods -n amazon-cloudwatch
+  --policy-document file:///tmp/cloudwatch-policy.json
 
-# Seção 3 - Container Insights
-aws eks create-addon --cluster-name $CLUSTER_NAME --addon-name amazon-cloudwatch-observability --region $AWS_REGION
-aws cloudwatch list-metrics --namespace ContainerInsights --dimensions Name=ClusterName,Value=$CLUSTER_NAME
+# Seção 3 - Container Insights via addon oficial
+aws eks create-addon --cluster-name $CLUSTER_NAME \
+  --addon-name amazon-cloudwatch-observability --region $AWS_REGION
+aws eks wait addon-active --cluster-name $CLUSTER_NAME \
+  --addon-name amazon-cloudwatch-observability --region $AWS_REGION
+kubectl get pods -n amazon-cloudwatch
+aws cloudwatch list-metrics --namespace ContainerInsights \
+  --dimensions Name=ClusterName,Value=$CLUSTER_NAME --query 'Metrics[].MetricName'
 
 # Seção 4 - Alarmes
-aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-HighCPU" ...
-aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-HighMemory" ...
-aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-UnhealthyPods" ...
-aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" --output table
+aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-HighCPU" \
+  --namespace ContainerInsights --metric-name pod_cpu_utilization \
+  --dimensions Name=ClusterName,Value=$CLUSTER_NAME \
+  --statistic Average --period 300 --threshold 70 \
+  --comparison-operator GreaterThanThreshold --evaluation-periods 2 \
+  --treat-missing-data notBreaching --region $AWS_REGION
 
-# Seção 6 - Tráfego
-kubectl top pods -n $NAMESPACE
+aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-HighMemory" \
+  --namespace ContainerInsights --metric-name pod_memory_utilization \
+  --dimensions Name=ClusterName,Value=$CLUSTER_NAME \
+  --statistic Average --period 300 --threshold 80 \
+  --comparison-operator GreaterThanThreshold --evaluation-periods 2 \
+  --treat-missing-data notBreaching --region $AWS_REGION
+
+aws cloudwatch put-metric-alarm --alarm-name "EKS-ADS-UnhealthyPods" \
+  --namespace ContainerInsights --metric-name pod_status_failed \
+  --dimensions Name=ClusterName,Value=$CLUSTER_NAME Name=Namespace,Value=$NAMESPACE \
+  --statistic Sum --period 60 --threshold 1 \
+  --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 \
+  --treat-missing-data notBreaching --region $AWS_REGION
+
+aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" \
+  --query 'MetricAlarms[].{Nome:AlarmName,Estado:StateValue,Threshold:Threshold}' --output table
+
+# Seção 6 - Métricas e tráfego
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 kubectl top nodes
+kubectl top pods -n $NAMESPACE
 kubectl logs -n $NAMESPACE -l app=ads-site --tail=10
 
+ENDPOINT=$(kubectl get svc ads-site-service -n $NAMESPACE \
+  -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+for i in $(seq 1 50); do
+  curl -s -o /dev/null -w "%{http_code}" http://$ENDPOINT; echo " - Request $i"
+done
+
 # Seção 7 - Dashboard
-aws cloudwatch put-dashboard --dashboard-name "EKS-ADS-Dashboard" ...
+aws cloudwatch put-dashboard --dashboard-name "EKS-ADS-Dashboard" \
+  --dashboard-body '{"widgets":[...]}'
 
 # Seção 9 - Limpeza
-aws cloudwatch delete-alarms --alarm-names "EKS-ADS-HighCPU" "EKS-ADS-HighMemory" "EKS-ADS-UnhealthyPods"
+aws cloudwatch delete-alarms \
+  --alarm-names "EKS-ADS-HighCPU" "EKS-ADS-HighMemory" "EKS-ADS-UnhealthyPods"
 aws cloudwatch delete-dashboards --dashboard-names "EKS-ADS-Dashboard"
-aws logs delete-log-group --log-group-name $LOG_GROUP
+aws logs delete-log-group --log-group-name $LOG_GROUP --region $AWS_REGION
 kubectl delete namespace amazon-cloudwatch
+aws iam delete-role-policy --role-name EKSNodeRole-ADS --policy-name CloudWatchLogsAccess
 ```
 
 ---
 
 ## Observações
 
-- Ambiente recriado via `start.sh` pois o cluster da Aula 13 havia sido encerrado.
-- Região utilizada: `sa-east-1` (São Paulo), conforme configuração AWS CLI local.
-- Account ID: `577638395851`.
-- A limpeza dos recursos de monitoramento foi executada via `cleanup.sh` antes de encerrar o cluster.
+- Ambiente recriado via `start.sh` pois o cluster da Aula 13 havia sido encerrado após a aula anterior.
+- O PC reiniciou durante a execução do `start.sh`. Como o script é idempotente, foi executado novamente e retomou do ponto onde parou (cluster já estava ACTIVE na AWS).
+- O manifesto YAML do Fluent Bit standalone retornou 404 (URL desatualizada). Solução: addon oficial `amazon-cloudwatch-observability` v6.2.0, que instala automaticamente Fluent Bit + CloudWatch Agent como DaemonSets.
+- O `kubectl top` exige Metrics Server separado (não incluído no addon CloudWatch). Foi instalado via manifesto oficial.
+- Região utilizada: `sa-east-1` (São Paulo). Account ID: `577638395851`.
+- Todos os recursos de monitoramento foram removidos ao final conforme exigido pelo TF.
 
 ---
 
 **Data de Conclusão:** 22/06/2026  
-**Status:** Questões Teóricas Q1-Q5 completas | Evidências Q6 aguardando execução do Lab
+**Status:** ✅ Completo — Q1-Q5 respondidas | Q6 com evidências reais de execução

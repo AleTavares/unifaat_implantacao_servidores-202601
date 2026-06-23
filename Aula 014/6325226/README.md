@@ -1,6 +1,6 @@
 # TF - Aula 14 - Monitoramento e Observabilidade de Containers na AWS
 
-**Aluno:** Lucas Kenway
+**Aluno:** Weslley
 **RA:** 6325226
 
 ---

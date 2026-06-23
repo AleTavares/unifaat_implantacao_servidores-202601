@@ -1,0 +1,9 @@
+=== kubectl get pods -n ads-unifaat ===
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-6df8cf7c44-tz4lz   1/1     Running   0          15m
+ads-site-6df8cf7c44-wnwdf   1/1     Running   0          15m
+
+=== kubectl get nodes ===
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-140-215.sa-east-1.compute.internal   Ready    <none>   16m   v1.32.13-eks-93b80c6
+ip-192-168-68-90.sa-east-1.compute.internal     Ready    <none>   16m   v1.32.13-eks-93b80c6

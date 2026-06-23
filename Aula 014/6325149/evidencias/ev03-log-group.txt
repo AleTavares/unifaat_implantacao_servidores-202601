@@ -1,0 +1,16 @@
+=== aws logs describe-log-groups ===
+$ aws logs describe-log-groups \
+    --log-group-name-prefix "/aws/eks/cluster-eks-ads" \
+    --query 'logGroups[].{Nome:logGroupName,Retencao:retentionInDays}' \
+    --output table --region sa-east-1
+
+-----------------------------------------------------
+|                 DescribeLogGroups                 |
++---------------------------------------+-----------+
+|                 Nome                  | Retencao  |
++---------------------------------------+-----------+
+|  /aws/eks/cluster-eks-ads/containers  |  7        |
++---------------------------------------+-----------+
+
+Log Group criado em: 22/06/2026 às 20:50
+Retenção configurada: 7 dias

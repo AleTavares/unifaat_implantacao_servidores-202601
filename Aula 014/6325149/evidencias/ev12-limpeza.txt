@@ -1,0 +1,11 @@
+=== Verificação pós-limpeza ===
+
+--- Alarmes EKS-ADS (deve estar vazio) ---
+(nenhum alarme)
+
+--- Log Groups /aws/eks/cluster-eks-ads (deve estar vazio) ---
+(nenhum log group)
+
+--- Namespace amazon-cloudwatch (deve estar ausente) ---
+Error from server (NotFound): namespaces "amazon-cloudwatch" not found
+Namespace não existe - removido com sucesso

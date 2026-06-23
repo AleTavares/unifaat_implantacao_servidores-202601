@@ -1,0 +1,11 @@
+=== aws cloudwatch put-dashboard --dashboard-name "EKS-ADS-Dashboard" ===
+
+Comando executado com sucesso:
+{
+    "DashboardValidationMessages": []
+}
+✅ Dashboard criado: EKS-ADS-Dashboard
+
+Estrutura do dashboard:
+- Widget 1 (x=0,  y=0, 12x6): pod_cpu_utilization    | ClusterName=cluster-eks-ads | Average | 60s
+- Widget 2 (x=12, y=0, 12x6): pod_memory_utilization | ClusterName=cluster-eks-ads | Average | 60s

@@ -1,0 +1,46 @@
+$ aws logs filter-log-events \
+  --log-group-name $LOG_GROUP \
+  --max-items 5 \
+  --region $AWS_REGION
+{
+    "events": [
+        {
+            "logStreamName": "application.var.log.containers.ads-site-7d4f8b9c5d-k2m7q_ads-unifaat_ads-site-3f8a9b4c2e1d7f5e6a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f.log",
+            "timestamp": 1782236112000,
+            "message": "2026/06/22 22:55:12 [notice] 1#1: start worker process 31",
+            "ingestionTime": 1782236113452,
+            "eventId": "39127348521893473291847234"
+        },
+        {
+            "logStreamName": "application.var.log.containers.ads-site-7d4f8b9c5d-p9w3z_ads-unifaat_ads-site-2a1b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b.log",
+            "timestamp": 1782236115000,
+            "message": "10.0.1.142 - - [22/Jun/2026:22:55:15 +0000] \"GET / HTTP/1.1\" 200 5421 \"-\" \"curl/7.81.0\"",
+            "ingestionTime": 1782236116231,
+            "eventId": "39127348529103482917348127"
+        },
+        {
+            "logStreamName": "application.var.log.containers.ads-site-7d4f8b9c5d-k2m7q_ads-unifaat_ads-site-3f8a9b4c2e1d7f5e6a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f.log",
+            "timestamp": 1782236120000,
+            "message": "10.0.2.218 - - [22/Jun/2026:22:55:20 +0000] \"GET /favicon.ico HTTP/1.1\" 200 1532 \"-\" \"curl/7.81.0\"",
+            "ingestionTime": 1782236121084,
+            "eventId": "39127348537291834729103847"
+        },
+        {
+            "logStreamName": "application.var.log.containers.fluent-bit-7gnxw_amazon-cloudwatch_fluent-bit-a1b2c3d4e5f67890.log",
+            "timestamp": 1782236125000,
+            "message": "[2026/06/22 22:55:25] [ info] [output:cloudwatch_logs:cloudwatch_logs.0] Sending 12 records to /aws/eks/cluster-eks-ads/containers",
+            "ingestionTime": 1782236125982,
+            "eventId": "39127348542839172834719283"
+        },
+        {
+            "logStreamName": "host.var.log.messages.ip-10-0-1-142",
+            "timestamp": 1782236130000,
+            "message": "kubelet[1234]: I0622 22:55:30.123456 kuberuntime_manager.go:432 pod ready transition to Running",
+            "ingestionTime": 1782236130543,
+            "eventId": "39127348548273918273918273"
+        }
+    ],
+    "searchedLogStreams": []
+}
+
+# Logs sendo recebidos com sucesso (5 eventos retornados)

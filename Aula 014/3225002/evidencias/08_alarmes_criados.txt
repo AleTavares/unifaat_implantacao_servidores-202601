@@ -1,0 +1,54 @@
+$ aws cloudwatch put-metric-alarm \
+    --alarm-name "EKS-ADS-CPU-Alta" \
+    --alarm-description "CPU media do cluster acima de 80%" \
+    --metric-name node_cpu_utilization \
+    --namespace ContainerInsights \
+    --statistic Average \
+    --dimensions Name=ClusterName,Value=$CLUSTER_NAME \
+    --period 300 \
+    --evaluation-periods 2 \
+    --threshold 80 \
+    --comparison-operator GreaterThanThreshold \
+    --treat-missing-data notBreaching \
+    --region $AWS_REGION
+
+$ aws cloudwatch put-metric-alarm \
+    --alarm-name "EKS-ADS-Memoria-Alta" \
+    --alarm-description "Memoria media do cluster acima de 85%" \
+    --metric-name node_memory_utilization \
+    --namespace ContainerInsights \
+    --statistic Average \
+    --dimensions Name=ClusterName,Value=$CLUSTER_NAME \
+    --period 300 \
+    --evaluation-periods 2 \
+    --threshold 85 \
+    --comparison-operator GreaterThanThreshold \
+    --treat-missing-data notBreaching \
+    --region $AWS_REGION
+
+$ aws cloudwatch put-metric-alarm \
+    --alarm-name "EKS-ADS-Pods-NaoSaudaveis" \
+    --alarm-description "Mais de 5 restarts de container em 5 minutos" \
+    --metric-name pod_number_of_container_restarts \
+    --namespace ContainerInsights \
+    --statistic Sum \
+    --dimensions Name=ClusterName,Value=$CLUSTER_NAME \
+    --period 300 \
+    --evaluation-periods 1 \
+    --threshold 5 \
+    --comparison-operator GreaterThanThreshold \
+    --treat-missing-data notBreaching \
+    --region $AWS_REGION
+
+$ aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" --region $AWS_REGION \
+    --query 'MetricAlarms[*].[AlarmName,StateValue,MetricName,Threshold]' \
+    --output table
+-------------------------------------------------------------------------------------------------
+|                                       DescribeAlarms                                          |
++----------------------------------+----------+----------------------------------+---------------+
+|  EKS-ADS-CPU-Alta                |  OK      |  node_cpu_utilization            |  80.0         |
+|  EKS-ADS-Memoria-Alta            |  OK      |  node_memory_utilization         |  85.0         |
+|  EKS-ADS-Pods-NaoSaudaveis       |  OK      |  pod_number_of_container_restarts|  5.0          |
++----------------------------------+----------+----------------------------------+---------------+
+
+# 3 alarmes criados com sucesso, todos em estado OK (nenhum violando threshold no momento)

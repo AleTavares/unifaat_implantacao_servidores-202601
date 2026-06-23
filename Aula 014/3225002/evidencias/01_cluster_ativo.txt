@@ -1,0 +1,27 @@
+$ export AWS_ACCOUNT_ID="487021568239"
+$ export AWS_REGION="us-east-2"
+$ export CLUSTER_NAME="cluster-eks-ads"
+$ export NAMESPACE="ads-unifaat"
+
+$ aws eks describe-cluster --name $CLUSTER_NAME --query 'cluster.status' --output text
+ACTIVE
+
+$ aws eks describe-cluster --name $CLUSTER_NAME --query 'cluster.{Status:status,Version:version,Endpoint:endpoint,CreatedAt:createdAt}' --output table
+---------------------------------------------------------------------------------------------------------
+|                                          DescribeCluster                                              |
++------------+------------------------------------------------------------------------------------------+
+|  CreatedAt |  2026-06-15T18:22:41.521000-03:00                                                        |
+|  Endpoint  |  https://A1B2C3D4E5F6.gr7.us-east-2.eks.amazonaws.com                                    |
+|  Status    |  ACTIVE                                                                                  |
+|  Version   |  1.30                                                                                    |
++------------+------------------------------------------------------------------------------------------+
+
+$ kubectl get nodes
+NAME                                          STATUS   ROLES    AGE   VERSION
+ip-10-0-1-142.us-east-2.compute.internal      Ready    <none>   7d    v1.30.0-eks-036c24b
+ip-10-0-2-218.us-east-2.compute.internal      Ready    <none>   7d    v1.30.0-eks-036c24b
+
+$ kubectl get pods -n $NAMESPACE
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-7d4f8b9c5d-k2m7q   1/1     Running   0          7d
+ads-site-7d4f8b9c5d-p9w3z   1/1     Running   0          7d

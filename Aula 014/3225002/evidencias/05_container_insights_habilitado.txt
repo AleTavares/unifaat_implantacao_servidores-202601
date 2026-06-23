@@ -1,0 +1,30 @@
+$ curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml \
+    | sed "s|{{cluster_name}}|$CLUSTER_NAME|g" \
+    | kubectl apply -f -
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  5247  100  5247    0     0  11421      0 --:--:-- --:--:-- --:--:-- 11457
+configmap/cwagentconfig created
+daemonset.apps/cloudwatch-agent created
+serviceaccount/cloudwatch-agent created
+
+$ kubectl get daemonset -n amazon-cloudwatch
+NAME               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+cloudwatch-agent   2         2         2       2            2           <none>          1m
+fluent-bit         2         2         2       2            2           <none>          8m
+
+$ kubectl get pods -n amazon-cloudwatch
+NAME                     READY   STATUS    RESTARTS   AGE
+cloudwatch-agent-h7m2p   1/1     Running   0          1m
+cloudwatch-agent-j8k4w   1/1     Running   0          1m
+fluent-bit-7gnxw         1/1     Running   0          8m
+fluent-bit-q4z8p         1/1     Running   0          8m
+
+$ kubectl logs cloudwatch-agent-h7m2p -n amazon-cloudwatch --tail 5
+2026-06-22T23:01:14Z I! cloudwatch: publish with namespace ContainerInsights/Performance, RetentionInDays 0
+2026-06-22T23:01:15Z I! Detect the autoscaling group: cluster-eks-ads-nodegroup
+2026-06-22T23:01:16Z I! [logagent] starting publisher for /aws/containerinsights/cluster-eks-ads/performance
+2026-06-22T23:01:17Z I! [outputs.cloudwatchlogs] Sending 8 records to /aws/containerinsights/cluster-eks-ads/performance
+2026-06-22T23:01:30Z I! [outputs.cloudwatchlogs] Sending 12 records to /aws/containerinsights/cluster-eks-ads/performance
+
+# Container Insights ativo: 2 pods cloudwatch-agent rodando + log group performance criado

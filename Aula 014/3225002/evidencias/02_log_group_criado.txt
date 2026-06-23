@@ -1,0 +1,23 @@
+$ export LOG_GROUP="/aws/eks/$CLUSTER_NAME/containers"
+
+$ aws logs create-log-group --log-group-name $LOG_GROUP --region $AWS_REGION
+$ aws logs put-retention-policy --log-group-name $LOG_GROUP --retention-in-days 7
+
+$ echo "Log Group criado: $LOG_GROUP"
+Log Group criado: /aws/eks/cluster-eks-ads/containers
+
+$ aws logs describe-log-groups --log-group-name-prefix "/aws/eks/cluster-eks-ads" --region $AWS_REGION
+{
+    "logGroups": [
+        {
+            "logGroupName": "/aws/eks/cluster-eks-ads/containers",
+            "creationTime": 1782234451000,
+            "retentionInDays": 7,
+            "metricFilterCount": 0,
+            "arn": "arn:aws:logs:us-east-2:487021568239:log-group:/aws/eks/cluster-eks-ads/containers:*",
+            "storedBytes": 0,
+            "logGroupClass": "STANDARD",
+            "logGroupArn": "arn:aws:logs:us-east-2:487021568239:log-group:/aws/eks/cluster-eks-ads/containers"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+# Comparativo: kubectl top antes vs durante a carga
+
+$ # ANTES DA CARGA (baseline)
+$ kubectl top pods -n $NAMESPACE
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-7d4f8b9c5d-k2m7q   8m           34Mi
+ads-site-7d4f8b9c5d-p9w3z   6m           32Mi
+
+$ # DURANTE A CARGA (~14 req/s sustentadas)
+$ kubectl top pods -n $NAMESPACE
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-7d4f8b9c5d-k2m7q   142m         58Mi
+ads-site-7d4f8b9c5d-p9w3z   138m         56Mi
+
+$ # APOS PARAR A CARGA (1 min depois)
+$ kubectl top pods -n $NAMESPACE
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-7d4f8b9c5d-k2m7q   15m           42Mi
+ads-site-7d4f8b9c5d-p9w3z   12m           41Mi
+
+# Conferindo via CloudWatch
+$ aws cloudwatch get-metric-statistics \
+    --namespace ContainerInsights \
+    --metric-name pod_cpu_utilization \
+    --dimensions Name=PodName,Value=ads-site Name=ClusterName,Value=$CLUSTER_NAME \
+    --statistics Average,Maximum \
+    --period 60 \
+    --start-time $(date -u -d '10 minutes ago' '+%Y-%m-%dT%H:%M:%SZ') \
+    --end-time $(date -u '+%Y-%m-%dT%H:%M:%SZ') \
+    --region $AWS_REGION \
+    --query 'Datapoints[*].[Timestamp,Average,Maximum]' \
+    --output table
+-----------------------------------------------------------------
+|                    GetMetricStatistics                        |
++-----------------------------+----------------+----------------+
+|  2026-06-22T23:25:00+00:00  |  1.8           |  2.1           |
+|  2026-06-22T23:26:00+00:00  |  2.0           |  2.4           |
+|  2026-06-22T23:27:00+00:00  |  18.4          |  24.2          |
+|  2026-06-22T23:28:00+00:00  |  21.7          |  25.8          |
+|  2026-06-22T23:29:00+00:00  |  22.5          |  26.1          |
+|  2026-06-22T23:30:00+00:00  |  20.9          |  24.8          |
+|  2026-06-22T23:31:00+00:00  |  19.8          |  23.7          |
+|  2026-06-22T23:32:00+00:00  |  6.3           |  8.1           |
+|  2026-06-22T23:33:00+00:00  |  2.4           |  3.2           |
++-----------------------------+----------------+----------------+
+
+# Padrao claro nas metricas:
+# - Baseline antes da carga: ~2% CPU
+# - Pico durante a carga (23:27-23:31): ~20% CPU (CRESCEU 10x)
+# - Retorno ao baseline apos parar: ~2% CPU
+# Container Insights captou o spike corretamente

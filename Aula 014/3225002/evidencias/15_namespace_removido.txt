@@ -1,0 +1,28 @@
+$ # Remover namespace amazon-cloudwatch (vai junto: DaemonSets, ConfigMaps, ServiceAccounts)
+$ kubectl delete namespace amazon-cloudwatch
+namespace "amazon-cloudwatch" deleted
+
+$ # Verificar que sumiu
+$ kubectl get namespace amazon-cloudwatch
+Error from server (NotFound): namespaces "amazon-cloudwatch" not found
+
+$ kubectl get namespaces
+NAME              STATUS   AGE
+ads-unifaat       Active   7d
+default           Active   7d
+kube-node-lease   Active   7d
+kube-public       Active   7d
+kube-system       Active   7d
+
+$ # Confirmar que nao ha mais pods do Fluent Bit nem do CloudWatch Agent
+$ kubectl get pods --all-namespaces | grep -E "fluent-bit|cloudwatch-agent"
+(saida vazia)
+
+# Namespace removido com sucesso
+# Aplicacao ads-unifaat continua intacta (preservada para uso futuro)
+
+# Limpeza completa concluida:
+# [x] Alarmes CloudWatch removidos
+# [x] Log groups removidos
+# [x] Namespace amazon-cloudwatch removido (DaemonSets + ServiceAccounts incluidos)
+# [x] Aplicacao em ads-unifaat preservada

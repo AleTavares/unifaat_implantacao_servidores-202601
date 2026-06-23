@@ -1,0 +1,69 @@
+$ cat > dashboard-ads.json << 'EOF'
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "metrics": [["ContainerInsights", "node_cpu_utilization", "ClusterName", "cluster-eks-ads"]],
+        "view": "timeSeries",
+        "region": "us-east-2",
+        "period": 300,
+        "stat": "Average",
+        "title": "CPU do Cluster (% medio)"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "metrics": [["ContainerInsights", "node_memory_utilization", "ClusterName", "cluster-eks-ads"]],
+        "view": "timeSeries",
+        "region": "us-east-2",
+        "period": 300,
+        "stat": "Average",
+        "title": "Memoria do Cluster (% medio)"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0, "y": 6, "width": 24, "height": 6,
+      "properties": {
+        "metrics": [
+          ["ContainerInsights", "pod_cpu_utilization", "PodName", "ads-site", "ClusterName", "cluster-eks-ads", "Namespace", "ads-unifaat"],
+          [".", "pod_memory_utilization", ".", ".", ".", ".", ".", "."]
+        ],
+        "view": "timeSeries",
+        "region": "us-east-2",
+        "period": 60,
+        "stat": "Average",
+        "title": "Pods ads-site: CPU vs Memoria"
+      }
+    }
+  ]
+}
+EOF
+
+$ aws cloudwatch put-dashboard \
+    --dashboard-name "EKS-ADS-Monitoring" \
+    --dashboard-body file://dashboard-ads.json \
+    --region $AWS_REGION
+{
+    "DashboardValidationMessages": []
+}
+
+$ aws cloudwatch list-dashboards --region $AWS_REGION --query 'DashboardEntries[?DashboardName==`EKS-ADS-Monitoring`]'
+[
+    {
+        "DashboardName": "EKS-ADS-Monitoring",
+        "DashboardArn": "arn:aws:cloudwatch::487021568239:dashboard/EKS-ADS-Monitoring",
+        "LastModified": "2026-06-22T23:18:42+00:00",
+        "Size": 1247
+    }
+]
+
+# Dashboard "EKS-ADS-Monitoring" criado com 3 widgets:
+# 1. CPU do cluster (linha do tempo)
+# 2. Memoria do cluster (linha do tempo)
+# 3. Pods ads-site: CPU vs Memoria
+# Acessivel via Console: CloudWatch > Dashboards > EKS-ADS-Monitoring

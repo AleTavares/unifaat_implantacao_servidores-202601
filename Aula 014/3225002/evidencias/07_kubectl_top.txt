@@ -1,0 +1,19 @@
+$ kubectl top nodes
+NAME                                          CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+ip-10-0-1-142.us-east-2.compute.internal      127m         12%    1287Mi          37%
+ip-10-0-2-218.us-east-2.compute.internal      94m          9%     1142Mi          33%
+
+$ kubectl top pods -n $NAMESPACE
+NAME                        CPU(cores)   MEMORY(bytes)
+ads-site-7d4f8b9c5d-k2m7q   8m           34Mi
+ads-site-7d4f8b9c5d-p9w3z   6m           32Mi
+
+$ kubectl top pods -n amazon-cloudwatch
+NAME                     CPU(cores)   MEMORY(bytes)
+cloudwatch-agent-h7m2p   28m          92Mi
+cloudwatch-agent-j8k4w   25m          89Mi
+fluent-bit-7gnxw         12m          28Mi
+fluent-bit-q4z8p         11m          27Mi
+
+# Uso de CPU e memoria em tempo real - Metrics Server respondendo OK
+# Pods da aplicacao consumindo pouco em estado baseline (~7-8m CPU, ~33Mi RAM)

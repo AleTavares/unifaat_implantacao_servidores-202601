@@ -1,0 +1,21 @@
+$ aws cloudwatch delete-alarms \
+    --alarm-names "EKS-ADS-CPU-Alta" "EKS-ADS-Memoria-Alta" "EKS-ADS-Pods-NaoSaudaveis" \
+    --region $AWS_REGION
+
+$ # Verificando que foram removidos
+$ aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" --region $AWS_REGION
+{
+    "MetricAlarms": [],
+    "CompositeAlarms": []
+}
+
+$ # Removendo dashboard tambem
+$ aws cloudwatch delete-dashboards \
+    --dashboard-names "EKS-ADS-Monitoring" \
+    --region $AWS_REGION
+
+$ aws cloudwatch list-dashboards --region $AWS_REGION \
+    --query 'DashboardEntries[?DashboardName==`EKS-ADS-Monitoring`]'
+[]
+
+# Alarmes e dashboard removidos com sucesso (lista vazia confirma)

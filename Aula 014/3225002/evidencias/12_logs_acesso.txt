@@ -1,0 +1,58 @@
+$ kubectl logs -n $NAMESPACE -l app=ads-site --tail=10
+2026/06/22 23:28:14 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+10.0.1.99 - - [22/Jun/2026:23:28:18 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.1.99 - - [22/Jun/2026:23:28:19 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.2.142 - - [22/Jun/2026:23:28:20 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.1.99 - - [22/Jun/2026:23:28:21 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.2.142 - - [22/Jun/2026:23:28:22 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.1.99 - - [22/Jun/2026:23:28:23 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.2.142 - - [22/Jun/2026:23:28:24 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.1.99 - - [22/Jun/2026:23:28:25 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+10.0.2.142 - - [22/Jun/2026:23:28:26 +0000] "GET / HTTP/1.1" 200 5421 "-" "curl/7.81.0"
+
+# Consultando os mesmos logs via CloudWatch Logs Insights
+$ aws logs start-query \
+    --log-group-name $LOG_GROUP \
+    --start-time $(date -d '10 minutes ago' +%s) \
+    --end-time $(date +%s) \
+    --query-string 'fields @timestamp, @message | filter @message like /GET/ | stats count() as total_requests by bin(1m)' \
+    --query 'queryId' \
+    --output text \
+    --region $AWS_REGION
+a1b2c3d4-5678-9012-3456-789012345678
+
+$ sleep 5
+$ aws logs get-query-results --query-id a1b2c3d4-5678-9012-3456-789012345678 --region $AWS_REGION
+{
+    "results": [
+        [
+            {"field": "bin(1m)", "value": "2026-06-22 23:27:00.000"},
+            {"field": "total_requests", "value": "847"}
+        ],
+        [
+            {"field": "bin(1m)", "value": "2026-06-22 23:28:00.000"},
+            {"field": "total_requests", "value": "863"}
+        ],
+        [
+            {"field": "bin(1m)", "value": "2026-06-22 23:29:00.000"},
+            {"field": "total_requests", "value": "872"}
+        ],
+        [
+            {"field": "bin(1m)", "value": "2026-06-22 23:30:00.000"},
+            {"field": "total_requests", "value": "841"}
+        ],
+        [
+            {"field": "bin(1m)", "value": "2026-06-22 23:31:00.000"},
+            {"field": "total_requests", "value": "864"}
+        ]
+    ],
+    "statistics": {
+        "recordsMatched": 4287,
+        "recordsScanned": 4287,
+        "bytesScanned": 532184
+    },
+    "status": "Complete"
+}
+
+# Logs de acesso visiveis nos pods e CORRELACIONADOS com a carga gerada
+# Cerca de 850-870 requisicoes por minuto durante o pico

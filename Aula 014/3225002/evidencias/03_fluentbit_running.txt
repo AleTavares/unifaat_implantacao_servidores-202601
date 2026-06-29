@@ -1,0 +1,26 @@
+$ kubectl create namespace amazon-cloudwatch
+namespace/amazon-cloudwatch created
+
+$ kubectl create configmap fluent-bit-cluster-info \
+  --namespace amazon-cloudwatch \
+  --from-literal=cluster.name=$CLUSTER_NAME \
+  --from-literal=http.server=On \
+  --from-literal=http.port=2020 \
+  --from-literal=logs.region=$AWS_REGION
+configmap/fluent-bit-cluster-info created
+
+$ kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit-compatible.yaml
+configmap/fluent-bit-config created
+daemonset.apps/fluent-bit created
+serviceaccount/fluent-bit created
+
+$ kubectl get pods -n amazon-cloudwatch
+NAME               READY   STATUS    RESTARTS   AGE
+fluent-bit-7gnxw   1/1     Running   0          47s
+fluent-bit-q4z8p   1/1     Running   0          47s
+
+$ kubectl get daemonset -n amazon-cloudwatch
+NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+fluent-bit   2         2         2       2            2           <none>          53s
+
+# Confirmacao: 2 nodes no cluster, 2 pods Fluent Bit rodando (um por no)

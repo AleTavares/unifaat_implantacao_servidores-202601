@@ -1,0 +1,152 @@
+$ aws cloudwatch list-metrics --namespace ContainerInsights --max-items 10 --region $AWS_REGION
+{
+    "Metrics": [
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "node_cpu_utilization",
+            "Dimensions": [
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "node_memory_utilization",
+            "Dimensions": [
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "pod_cpu_utilization",
+            "Dimensions": [
+                {
+                    "Name": "PodName",
+                    "Value": "ads-site"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                },
+                {
+                    "Name": "Namespace",
+                    "Value": "ads-unifaat"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "pod_memory_utilization",
+            "Dimensions": [
+                {
+                    "Name": "PodName",
+                    "Value": "ads-site"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                },
+                {
+                    "Name": "Namespace",
+                    "Value": "ads-unifaat"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "cluster_failed_node_count",
+            "Dimensions": [
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "node_network_total_bytes",
+            "Dimensions": [
+                {
+                    "Name": "NodeName",
+                    "Value": "ip-10-0-1-142.us-east-2.compute.internal"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "pod_number_of_container_restarts",
+            "Dimensions": [
+                {
+                    "Name": "PodName",
+                    "Value": "ads-site"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "node_filesystem_utilization",
+            "Dimensions": [
+                {
+                    "Name": "NodeName",
+                    "Value": "ip-10-0-2-218.us-east-2.compute.internal"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "service_number_of_running_pods",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "ads-site-service"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                },
+                {
+                    "Name": "Namespace",
+                    "Value": "ads-unifaat"
+                }
+            ]
+        },
+        {
+            "Namespace": "ContainerInsights",
+            "MetricName": "container_cpu_usage_total",
+            "Dimensions": [
+                {
+                    "Name": "PodName",
+                    "Value": "ads-site"
+                },
+                {
+                    "Name": "ContainerName",
+                    "Value": "ads-site"
+                },
+                {
+                    "Name": "ClusterName",
+                    "Value": "cluster-eks-ads"
+                }
+            ]
+        }
+    ],
+    "NextToken": "eyJOZXh0VG9rZW4iOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAxMH0="
+}
+
+# 10 metricas listadas no namespace ContainerInsights - dados chegando do CloudWatch Agent

@@ -1,0 +1,18 @@
+$ # Remover log group dos containers do EKS
+$ aws logs delete-log-group --log-group-name "/aws/eks/cluster-eks-ads/containers" --region $AWS_REGION
+
+$ # Remover log group do Container Insights (performance)
+$ aws logs delete-log-group --log-group-name "/aws/containerinsights/cluster-eks-ads/performance" --region $AWS_REGION
+
+$ # Verificacao
+$ aws logs describe-log-groups --log-group-name-prefix "/aws/eks/cluster-eks-ads" --region $AWS_REGION
+{
+    "logGroups": []
+}
+
+$ aws logs describe-log-groups --log-group-name-prefix "/aws/containerinsights/cluster-eks-ads" --region $AWS_REGION
+{
+    "logGroups": []
+}
+
+# Ambos os log groups removidos com sucesso (listas vazias confirmam)

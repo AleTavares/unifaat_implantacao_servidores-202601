@@ -1,0 +1,8 @@
+# Verificacao de cluster ativo
+
+aws eks describe-cluster --name cluster-eks-ads --region sa-east-1 --query 'cluster.status'
+
+Resultado:
+"ACTIVE"
+
+Status: SUCESSO - Cluster cluster-eks-ads esta ATIVO em sa-east-1

@@ -1,0 +1,16 @@
+=== aws cloudwatch describe-alarms --alarm-name-prefix "EKS-ADS" (capturado durante execução) ===
+
+--------------------------------------------------
+|                 DescribeAlarms                 |
++--------+-------------------------+-------------+
+| Estado |          Nome           |  Threshold  |
++--------+-------------------------+-------------+
+|  OK    |  EKS-ADS-HighCPU        |  70.0       |
+|  OK    |  EKS-ADS-HighMemory     |  80.0       |
+|  OK    |  EKS-ADS-UnhealthyPods  |  1.0        |
++--------+-------------------------+-------------+
+
+Configuração dos alarmes:
+- EKS-ADS-HighCPU:       pod_cpu_utilization > 70% por 2 períodos de 5min
+- EKS-ADS-HighMemory:    pod_memory_utilization > 80% por 2 períodos de 5min
+- EKS-ADS-UnhealthyPods: pod_status_failed >= 1 por 1 período de 1min

@@ -1,0 +1,14 @@
+=== kubectl get pods -n amazon-cloudwatch (capturado durante execução) ===
+
+NAME                                                              READY   STATUS    RESTARTS   AGE
+amazon-cloudwatch-observability-controller-manager-8f9f964h6j8r   1/1     Running   0          27s
+cloudwatch-agent-cwt6x                                            1/1     Running   0          22s
+cloudwatch-agent-wwd4v                                            1/1     Running   0          22s
+fluent-bit-5n49s                                                  1/1     Running   0          28s
+fluent-bit-zdx28                                                  1/1     Running   0          28s
+
+Addon instalado: amazon-cloudwatch-observability v6.2.0-eksbuild.1
+ARN: arn:aws:eks:sa-east-1:577638395851:addon/cluster-eks-ads/amazon-cloudwatch-observability/08cf78df-57f7-b6d1-1ef0-3dfa7536fabb
+- 1 fluent-bit por node (2 nodes = 2 pods)
+- 1 cloudwatch-agent por node (2 nodes = 2 pods)
+- 1 controller-manager (deployment)

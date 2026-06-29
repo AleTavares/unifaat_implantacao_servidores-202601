@@ -1,0 +1,9 @@
+# Service com LoadBalancer
+
+kubectl get svc -n ads-unifaat
+
+Resultado:
+NAME               TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)        AGE
+ads-site-service   LoadBalancer   10.100.42.255   a431b1679936d4d7d9650aff6e2244f0-1998456880.sa-east-1.elb.amazonaws.com   80:30133/TCP   18s
+
+Status: SUCESSO - LoadBalancer com EXTERNAL-IP disponivel (DNS do ELB)

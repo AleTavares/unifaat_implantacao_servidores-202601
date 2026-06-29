@@ -1,0 +1,9 @@
+# Login no ECR
+
+aws ecr get-login-password --region sa-east-1 | \
+  docker login --username AWS --password-stdin 577638395851.dkr.ecr.sa-east-1.amazonaws.com
+
+Resultado:
+Login Succeeded
+
+Status: SUCESSO - Autenticacao com ECR realizada

@@ -1,0 +1,8 @@
+# Listagem de imagem Docker
+
+docker images | grep ads-unifaat
+
+Resultado:
+ads-unifaat-site   v1.0          dcdfdbbaacdc   92.8MB    26.1MB
+
+Status: SUCESSO - Imagem criada localmente com tag v1.0

@@ -1,0 +1,10 @@
+# Listagem de Pods
+
+kubectl get pods -n ads-unifaat
+
+Resultado:
+NAME                        READY   STATUS    RESTARTS   AGE
+ads-site-6df8cf7c44-5jms4   1/1     Running   0          25s
+ads-site-6df8cf7c44-t24f9   1/1     Running   0          25s
+
+Status: SUCESSO - 2 pods em status Running

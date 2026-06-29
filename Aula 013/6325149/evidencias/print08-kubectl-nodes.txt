@@ -1,0 +1,10 @@
+# Listagem de nodes do cluster
+
+kubectl get nodes
+
+Resultado:
+NAME                                           STATUS   ROLES    AGE   VERSION
+ip-192-168-207-74.sa-east-1.compute.internal   Ready    <none>   92s   v1.32.13-eks-0de9cde
+ip-192-168-24-176.sa-east-1.compute.internal   Ready    <none>   93s   v1.32.13-eks-0de9cde
+
+Status: SUCESSO - 2 nodes em status Ready

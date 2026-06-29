@@ -1,0 +1,1 @@
+577638395851.dkr.ecr.sa-east-1.amazonaws.com/app-frontend:v1.0                                        1f7ff5fc209d       92.7MB           26MB        

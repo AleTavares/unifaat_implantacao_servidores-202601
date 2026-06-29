@@ -1,0 +1,24 @@
+$ kubectl get namespaces
+NAME                 STATUS   AGE
+ads-unifaat          Active   5m14s
+default              Active   34h
+hotel-system         Active   33h
+kube-node-lease      Active   34h
+kube-public          Active   34h
+kube-system          Active   34h
+local-path-storage   Active   34h
+
+$ kubectl get all -n ads-unifaat
+NAME                            READY   STATUS      RESTARTS   AGE
+pod/ads-site-7ccbf4857c-k65c9   1/1     Running     0          5m14s
+pod/ads-site-7ccbf4857c-wv65r   1/1     Running     0          5m15s
+pod/load-test                   0/1     Completed   0          65s
+
+NAME                       TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/ads-site-service   NodePort   10.96.225.28   <none>        80:31815/TCP   5m14s
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/ads-site   2/2     2            2           5m15s
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/ads-site-7ccbf4857c   2         2         2       5m15s

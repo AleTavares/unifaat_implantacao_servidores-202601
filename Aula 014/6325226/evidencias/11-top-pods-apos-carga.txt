@@ -1,0 +1,8 @@
+$ kubectl top pods -n ads-unifaat (apos carga)
+NAME                        CPU(cores)   MEMORY(bytes)   
+ads-site-7ccbf4857c-k65c9   1m           13Mi            
+ads-site-7ccbf4857c-wv65r   1m           13Mi            
+
+$ kubectl top nodes (apos carga)
+NAME                          CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+tf-kubernetes-control-plane   350m         2%       1018Mi          27%         

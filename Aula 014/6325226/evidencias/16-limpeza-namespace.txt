@@ -1,0 +1,2 @@
+$ kubectl delete namespace ads-unifaat
+namespace "ads-unifaat" deleted

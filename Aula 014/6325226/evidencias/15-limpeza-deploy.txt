@@ -1,0 +1,5 @@
+$ kubectl delete deployment ads-site -n ads-unifaat
+deployment.apps "ads-site" deleted from ads-unifaat namespace
+
+$ kubectl delete service ads-site-service -n ads-unifaat
+service "ads-site-service" deleted from ads-unifaat namespace

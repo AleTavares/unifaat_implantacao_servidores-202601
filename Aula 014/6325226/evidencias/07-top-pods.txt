@@ -1,0 +1,4 @@
+$ kubectl top pods -n ads-unifaat
+NAME                        CPU(cores)   MEMORY(bytes)   
+ads-site-7ccbf4857c-k65c9   1m           13Mi            
+ads-site-7ccbf4857c-wv65r   1m           13Mi            

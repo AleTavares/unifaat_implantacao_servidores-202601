@@ -1,0 +1,302 @@
+# Lab 13: Deploy de Containers na AWS com EKS (Elastic Kubernetes Service)
+
+**Disciplina:** Implementação de servidor e nuvem (cloud)
+**Aula:** 13 - Deploy de Containers na AWS com EKS
+**Aluno:** Andreyh
+**Objetivo:** Implementação de deploy completo de uma aplicação containerizada no AWS EKS.
+
+---
+
+## 📌 Visão Geral do Projeto
+
+Neste laboratório foi realizado o processo completo de deploy de uma aplicação web utilizando Docker, AWS ECR e AWS EKS (Kubernetes gerenciado).
+
+O fluxo seguiu as etapas:
+
+* Criação da aplicação web (HTML + CSS)
+* Containerização com Docker
+* Publicação da imagem no AWS ECR
+* Criação de cluster Kubernetes no AWS EKS
+* Deploy da aplicação via Kubernetes (Deployment + Service)
+* Exposição pública via LoadBalancer
+
+---
+
+## 🏗️ Arquitetura
+
+* Docker (build da aplicação)
+* AWS ECR (armazenamento da imagem)
+* AWS EKS (orquestração Kubernetes)
+* EC2 Nodes (execução dos pods)
+* LoadBalancer (exposição pública)
+
+---
+
+## ⚙️ Tecnologias utilizadas
+
+* AWS CLI
+* Docker
+* Kubernetes (kubectl)
+* AWS EKS
+* AWS ECR
+* AWS IAM
+* CloudFormation
+* Nginx
+
+---
+
+## 📘 Questões Teóricas
+
+### **Questão 1**
+
+**a) Diferença entre Control Plane e Worker Nodes**
+
+O **Control Plane** é responsável pelo gerenciamento do cluster Kubernetes (agendamento de pods, controle de estado e API do Kubernetes). Ele é gerenciado pela AWS no EKS.
+
+Os **Worker Nodes** são as máquinas (EC2) onde os containers realmente executam. Eles são gerenciados pelo usuário.
+
+---
+
+**b) Self-healing no Kubernetes**
+
+Self-healing é a capacidade do Kubernetes de manter o estado desejado do sistema.
+Se um pod falha ou para de funcionar, o Kubernetes automaticamente cria outro no lugar para manter o número de réplicas definido.
+
+---
+
+### **Questão 2**
+
+**a) Deployment vs Service**
+
+* **Deployment:** Gerencia a criação e manutenção dos pods, garantindo o número correto de réplicas.
+* **Service:** Expõe os pods para comunicação interna ou externa, criando um ponto fixo de acesso.
+
+---
+
+**b) Labels e Selectors**
+
+* **Labels:** Tags aplicadas aos pods (ex: `app=ads-site`)
+* **Selectors:** Critérios usados pelo Service para identificar quais pods ele deve expor
+
+---
+
+**c) Probes**
+
+* **Liveness Probe:** Verifica se o container ainda está vivo. Se falhar, o pod é reiniciado.
+* **Readiness Probe:** Verifica se o pod está pronto para receber tráfego.
+
+Exemplo:
+
+* Liveness: reiniciar aplicação travada
+* Readiness: só enviar tráfego quando app estiver totalmente carregada
+
+---
+
+### **Questão 3**
+
+**a) IAM Role do EKS**
+
+A role permite que o cluster EKS gerencie recursos AWS como Load Balancers, redes e integração com outros serviços.
+
+---
+
+**b) AmazonEC2ContainerRegistryReadOnly**
+
+Permite que os nodes façam pull de imagens do ECR.
+
+Sem essa permissão, os pods falham com erro `ImagePullBackOff`.
+
+---
+
+### **Questão 4**
+
+**a) Tipos de Service**
+
+* ClusterIP: acesso interno no cluster
+* NodePort: expõe porta em cada node
+* LoadBalancer: cria um balanceador público na AWS
+
+---
+
+**b) LoadBalancer na AWS**
+
+Cria automaticamente um Elastic Load Balancer (ELB) que expõe a aplicação na internet.
+
+---
+
+**c) Por que deletar o Service primeiro**
+
+Porque o LoadBalancer é criado pelo Service.
+Se o cluster for deletado antes, o LoadBalancer pode ficar órfão gerando custos.
+
+---
+
+### **Questão 5**
+
+**a) Criar namespace**
+
+```bash
+kubectl create namespace minha-app
+```
+
+---
+
+**b) Deployment (3 réplicas)**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  namespace: minha-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app
+        image: 111222333444.dkr.ecr.us-east-1.amazonaws.com/web-app:v2.0
+        ports:
+        - containerPort: 80
+```
+
+---
+
+**c) Service LoadBalancer**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: minha-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-app
+  ports:
+    - port: 80
+      targetPort: 80
+```
+
+---
+
+**d) Escalar deployment**
+
+```bash
+kubectl scale deployment web-app -n minha-app --replicas=5
+```
+
+---
+
+**e) Verificar pods e endpoint**
+
+```bash
+kubectl get pods -n minha-app
+kubectl get svc -n minha-app
+```
+
+---
+
+## ⚙️ Etapas realizadas no Lab
+
+### 1. Aplicação
+
+* Criada aplicação web com HTML + CSS
+* Servida via Nginx
+
+---
+
+### 2. Docker
+
+* Build da imagem
+* Teste local via container
+
+---
+
+### 3. ECR
+
+* Repositório criado
+* Login realizado
+* Imagem enviada com sucesso
+
+---
+
+### 4. EKS
+
+* Cluster criado
+* Node Group criado
+* kubectl configurado
+
+---
+
+### 5. Deploy
+
+* Namespace criado
+* Deployment criado
+* Service LoadBalancer criado
+
+---
+
+## 🚨 Problema encontrado
+
+Durante a etapa final do deploy, os pods ficaram com status:
+
+```
+Pending
+```
+
+Mesmo com:
+
+* Cluster ativo
+* Nodes em status Ready
+* Service criado corretamente
+
+Os pods não foram agendados corretamente nos nodes.
+
+Foi realizado diagnóstico com:
+
+```bash
+kubectl get nodes
+kubectl get pods
+kubectl describe pod
+kubectl get events
+```
+
+Mas o problema persistiu até o momento da entrega.
+
+---
+
+## 📊 Resultado final
+
+* Cluster EKS criado com sucesso
+* Node Group ativo
+* Imagem publicada no ECR
+* Service LoadBalancer criado
+* Deploy não finalizado (pods em Pending)
+
+---
+
+## 📌 Conclusão
+
+O laboratório permitiu entender o fluxo completo de deploy em cloud com Kubernetes:
+
+* Docker
+* AWS ECR
+* AWS EKS
+* Kubernetes Deployment e Service
+
+Mesmo com o problema final, toda a infraestrutura foi construída e os conceitos foram aplicados na prática.
+
+---
+
+## 📎 Observação final
+
+Este laboratório demonstrou a complexidade de ambientes reais em cloud computing, onde o erro não impede o aprendizado, mas sim reforça a necessidade de debugging e análise de infraestrutura.
+
